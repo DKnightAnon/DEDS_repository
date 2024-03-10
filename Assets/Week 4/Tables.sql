@@ -74,3 +74,24 @@ CREATE TABLE SALES_BRANCH(
     POSTAL_ZONE varchar(50)
 );
 
+
+
+
+
+CREATE TABLE PRODUCT(
+    PRODUCT_NUMBER int,
+    INTRODUCTION_DATE date,
+    
+    PRODUCT_TYPE_CODE int,
+    PRODUCT_TYPE_EN varchar(200),
+
+    PRODUCT_LINE_CODE int,
+    PRODUCT_LINE_EN varchar(200),
+
+    PRODUCTION_COST decimal(18,2),
+    MARGIN decimal(4,2),
+    PRODUCT_IMAGE varchar(200),
+    PRODUCT_NAME varchar(200),
+    PRODUCT_DESCRIPTION_EN(1000),
+    LANUGAGE varchar(100)
+);
