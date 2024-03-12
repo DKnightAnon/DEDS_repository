@@ -1,8 +1,10 @@
 -- Feittabellen
 
 CREATE TABLE Order_Details (
-	ORDER_NUMBER int,
-	ORDER_DETAIL_CODE int,
+    ID int IDENTITY(1,1),
+
+	ORDER_NUMBER_PK int,
+	ORDER_DETAIL_CODE_PK int,
 	ORDER_DETAILS_QUANTITY int,
 
 
@@ -21,7 +23,10 @@ CREATE TABLE Order_Details (
 
 
 CREATE TABLE RETURNED_ITEM(
-    RETURNED ITEM CODE int,
+    ID int IDENTITY(1,1),
+
+    RETURNED ITEM CODE_PK int,
+    ORDER_DETAIL_CODE int,
 
     RETURN_DATE date,
     RETURN_QUANTITY int,
@@ -32,9 +37,10 @@ CREATE TABLE RETURNED_ITEM(
 
 
 CREATE TABLE STAFF_TRAINING(
+    ID int IDENTITY(1,1),
 
-    Year int(4),
-    SALES_STAFF_CODE int(4),
+    Year_PK int(4),
+    SALES_STAFF_CODE_PK int(4),
 
     SATISFACTION varchar(250)
 
@@ -46,7 +52,7 @@ CREATE TABLE STAFF_TRAINING(
 --Dimensiewaardes
 
 CREATE TABLE SALES_STAFF(
-    SALES_STAFF_CODE int,
+    SALES_STAFF_CODE_PK int,
     FIRST_NAME varchar,
     LAST_NAME varchar,
     FULL_NAME varchar,
@@ -64,11 +70,11 @@ CREATE TABLE SALES_STAFF(
 );
 
 CREATE TABLE SALES_BRANCH(
-    SALES_BRANCH_CODE int,
+    SALES_BRANCH_CODE_PK int,
     ADDRESS1 varchar(200),
     ADDRESS1 varchar(200),
     POSTAL_ADDRESS varchar(200),
-    COUNTRY_CODE int,
+    COUNTRY varchar(200),
     REGION varchar(200),
     CITY varchar(200),
     POSTAL_ZONE varchar(50)
@@ -79,7 +85,7 @@ CREATE TABLE SALES_BRANCH(
 
 
 CREATE TABLE PRODUCT(
-    PRODUCT_NUMBER int,
+    PRODUCT_NUMBER_PK int,
     INTRODUCTION_DATE date,
     
     PRODUCT_TYPE_CODE int,
@@ -94,4 +100,61 @@ CREATE TABLE PRODUCT(
     PRODUCT_NAME varchar(200),
     PRODUCT_DESCRIPTION_EN(1000),
     LANUGAGE varchar(100)
+);
+
+CREATE TABLE RETURN_REASON(
+    RETURN_REASON_CODE int,
+    RETURN_REASON_EN varchar(200)
+);
+
+
+
+CREATE TABLE RETAILER(
+    RETAILER_SITE_CODE int,
+    ADDRESS1 varchar(200),
+    ADDRESS2 varchar(200),
+    COUNTRY_CODE int,
+    COOUNTRY_EN varchar(200),
+    FLAG_IMAGE varchar(200),
+    REGION varchar(200),
+    CITY varchar(100),
+    POSTAL_ZONE varchar(100),
+    ACTIVE_INDICATOR int,
+    SALES_TERRITORY_CODE int,
+    TERRITORY_NAME_EN varchar(200),
+    RETAILER_CODE int,
+    RETAILER_CODEMR int,
+    COMPANY_NAME varchar(200),
+    RETAILER_TYPE_CODE int,
+    RETAILER_TYPE_EN varchar(200),
+    RETAILER_CONTACT_CODE int,
+    FIRST_NAME varchar(200),
+    LAST_NAME varchar(200),
+    JOB_POSITION_EN varchar(200),
+    EXTENSION int,
+    FAX varchar(50),
+    E_MAIL varchar(100),
+    GENDER varchar(5)
+);
+
+
+CREATE TABLE COURSE(
+    COURSE_CODE int,
+    DESCRIPTION varchar(200)
+);
+
+CREATE TABLE SATISFACTION_TYPE(
+    SATISFACTION_TYPE_CODE int,
+    SATISFACTION_TYPE varchar(100)
+);
+
+CREATE TABLE SATISFACTION(
+
+);
+
+CREATE TABLE TIME(
+    TIME_ID date,
+    YEAR int,
+    MONTH int,
+    DAY int
 );

@@ -1,6 +1,13 @@
 # P4.1
 Tijdens deze opdracht worden de dimensiewaardes vastgesteld op basis van het in week 1 opgestelde brongegevensmodel. Dimensiewaardes zijn mensen/dingen/objecten.
 
+Bij elke dimensietabel moet er minimaal 1 dimensiewaarde afgeleid worden. Deze zijn als volgt : 
+
+1. POSTAL_ADDRESS in Sales_Branch (Opgesteld uit POSTAL_ZONE en ADDRESS1)
+2. FULL_NAME in Sales_Staff (Opgesteld uit FIRST_NAME en LAST_NAME)
+
+Bij sommige tabellen was er echter niet genoeg data om een nuttige dimensiewaarde af te leiden.
+
 
 # P4.2
 Tijdens deze opdracht wordt er voortgebouwd op P4.1 door de feittabellen vast te stellen. Feiten zijn gebeurtenissen/activiteite/processen dat vastgelegd worden met behulp van dimensiewaardes.
@@ -11,7 +18,8 @@ Tijdens deze opdracht wordt er voortgebouwd op P4.1 door de feittabellen vast te
 ## Afgeleide meetwaarden
 Als gedeelte van de opdracht moeten er over de feittabellen in totaal 5 meetwaardes afgeleid worden. Meetwaardes zijn waardes in de tabel waar berekening over gedaan kunnen worden. Afgeleide meetwaarden zijn waardes dat niet in de tabel staan, maar wel opgesteld kan worden door al bestaande waardes te combineren.
 
-De 5 afgeleide meetwaardes zijn : <br>
+De 5 afgeleide meetwaardes zijn : 
+
 1. ORDER_DETAILS_TURNOVER in ORDER_DETAILS (UNIT_SALE_PRICE * QUANTITY)
 2. ORDER_DETAILS_PROFIT in ORDER_DETAILS ( (UNIT_SALE_PRICE * QUANTITY)-(UNIT_COST * QUANTITY) )
 3. ORDER_DETAILS_DISCOUNT_PERCENTAGE in ORDER_DETAILS ( (UNIT_SALE_PRICE/UNIT_PRICE) * 100)
@@ -24,3 +32,5 @@ Tijdens deze opdracht wordt op basis van de eerder opgestelde dimensiewaardes en
 Data uit de brongegevens (aangeleverde sqlite databases en CSV bestanden) moeten vertaald worden naar feit- en dimensietabellen. Hiervoor moet de data in deze brongegevens ook opgeschoond worden. (De nieuwe SQLite bestanden op brightspace lijken schoon aangeleverd te zijn.)
 
 Om deze tabellen op te stellen zal er gebruik gemaakt worden van Pandas om tabellen met elkaar te mergen, extra kolommen (afgeleide waardes) toe te voegen en overtollige kolommen te verwijderen.
+
+Er moet nog gekeken worden naar hoe de Foreign Keys en de Datum tabel geïmplementeerd moet worden.
