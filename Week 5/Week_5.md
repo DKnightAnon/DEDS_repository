@@ -22,3 +22,15 @@ Een SK vervangt de FK. Maar hoe weet de Feittabel dat het de nieuwe, gewijzigde 
 # P5.3 - Conversatie naar Executable
 
 In deze stap moet het Jupyter Notebook project omgezet worden naar een Python project.
+(Jupyter Notebook is niet specifiek voor Python - Het is gebouwd met HTML, CSS en Javacsript en kan codeblokken bevatten voor verschillende talen.)
+
+Het converteren van Jupyter Notebook naar Python code is handig omdat je dan een executable hebt dat op een server uitvoerbaar. 
+
+## Python project folder structuur
+
+projectfolder --- log.txt
+    |       \
+   data     src
+  /   \
+raw   processed
+
