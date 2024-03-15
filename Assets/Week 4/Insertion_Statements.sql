@@ -8,3 +8,8 @@ VALUES
 	4.0, 0.33, 'P01CE1CG1.jpg', 'TrailChef Water Bag', 
 	'Lightweight, collapsible bag to carry liquids easily.  Wide mouth for easy filling.  Holds 10 liters.', 'EN' 
 )
+
+
+INSERT INTO SATISFACTION
+  (YEAR, SALES_STAFF_CODE, SATISFACTION_TYPE_CODE, SATISFACTION_TYPE_DESCRIPTION)
+VALUES(2004,100,1,'Not satisfied')

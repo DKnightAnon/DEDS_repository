@@ -17,7 +17,7 @@ Er moet rekening mee gehouden worden date het formaat voor datums in de brongege
 In deze stap moeten Surrogate Keys geïmplementeerd worden. Surrogate Keys zijn alternatieve primaire sleutels dat gebruikt worden in plaats van de PK's in de brontabel. Een Surrogate Key bestaat uit een nummer, met een tweede kolom voor een timestamp(dit is niet gedeelte van de SK). Op deze wijze kan bij elke wijziging op een rij een duplicaat aangemaakt worden met de gewijzigde gegevens. Dat wilt zeggen dat je de originele rij en de gemodificeerde rij beide in de tabel houdt. Met behulp van de SK en de timestamp kun je zo wijzigingen over een bepaalde periode van tijd bijhouden. 
 
 ## Surrogate Keys
-Een SK vervangt de FK. Maar hoe weet de Feittabel dat het de nieuwe, gewijzigde record in de dimensie tabel moet hebben? Misschien is dit te doen door de Foreign Key en de Foreign Surrogate Key te combineren in combinatie met een Trigger of Stored Procedure. Als de Dimension gewijzigde wordt, kan er een Trigger geactiveerd worden dat op basis van de Foreign Key gaat zoeken naar de Foreign Surrogate Key met het meest recente timestamp.
+Een SK vervangt de FK. Maar hoe weet de Feittabel dat het de nieuwe, gewijzigde record in de dimensie tabel moet hebben? Misschien is dit te doen door de Foreign Key en de Foreign Surrogate Key te combineren in combinatie met een Trigger of Stored Procedure. Als ~~de Dimension gewijzigd~~ er nieuwe informatie ingevoerd wordt, kan er een Trigger geactiveerd worden dat op basis van de Foreign Key gaat zoeken naar de Foreign Surrogate Key met het meest recente timestamp.
 
 ## Hoe behoud je de juiste verwijzing naar de juiste Foreign Surrogate Key (FSK)
 
@@ -26,6 +26,12 @@ In de brontabellen heb je Primary Keys en Foreign Keys. De verwijzingen naar and
 Surrogate Keys worden echter pas toegevoegd in de Data Warehouse. Hierdoor heb je geen zinvolle waardes om een PK-FK relatie op te baseren. Maar misschien kan dit gedaan worden door in de CREATE TABLE statements gebruik te maken van DEFAULT values of TRIGGERS. 
 
 Op het internet zoeken naar (Foreign) Surrogate Keys levert alleen resultaten op over het concept, maar niet de implementatie. Misschien googlen naar specifiek Slowly Changing Dimensions?
+
+### Triggers gebruiken om FSK's te selecteren
+
+- Trigger INSTEAD OF insert
+- Zoek in dimensie tabel op FK, selecteer rij met FSK waarvan timestamp voor feit plaatsvond, maar niet na
+- Zet 
 
 
 # P5.3 - Conversatie naar Executable
