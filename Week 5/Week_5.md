@@ -11,6 +11,9 @@ Het ETL schema zal als een ster schema gemaakt worden. Dat wil zeggen dat een fe
 Er moet ook nog gekeken worden of elke dimensietabel een afgeleide waarde heeft.
 Er moet rekening mee gehouden worden date het formaat voor datums in de brongegevens afwijkt van het formaat dat SQL Server gebruikt. 
 
+## INSERT problemen
+Bij de dimensie tabel Retailer treden er veel problemen op betreffende Insertion. Dit komt omdat veel winkelnamen (COMPANY_NAME) en adressen (ADDRESS1) een apostrof bevatten. In SQL server is dit een speciaal karakter dat het begin of einde van een string aanduidt. Dit zorgt voor problemen later in de insert statement.
+
 
 # P5.2 - Converteren naar Slowly Changing Dimensions
 
@@ -32,6 +35,10 @@ Op het internet zoeken naar (Foreign) Surrogate Keys levert alleen resultaten op
 - Trigger INSTEAD OF insert
 - Zoek in dimensie tabel op FK, selecteer rij met FSK waarvan timestamp voor feit plaatsvond, maar niet na
 - Zet 
+
+
+## Date Dimensie
+Ik heb besloten om de date dimension niet te gebruiken. Ik heb mijn handen vol aan de surrogate keys, en ik wil niet nog meer tijd kwijt zijn aan het implementeren van de date dimensie. Ik snap wat de meerwaarde is (op basis van de datum opslitsen in eenheiden zoals dag van de week), maar niet hoe je het het best kan implementeren.
 
 
 # P5.3 - Conversatie naar Executable
