@@ -6,6 +6,7 @@ import numpy
 import sqlite3
 import csv
 from decimal import Decimal
+import tqdm
 
 def processing() :
 
@@ -35,7 +36,7 @@ def processing() :
     # export_cursor.execute("CREATE DATABASE GreatOutdoorsDW")
     # export_cursor.execute("USE GreatOutdoorsDW")
 
-    export_cursor
+    # export_cursor
 
 
     sales_con = None
@@ -431,6 +432,8 @@ def processing() :
 
 
     logger.info("Attempting database insertion.")
+    
+    progress = tqdm.tqdm(total=11)
 
     #PRODUCT
     for index, row in PRODUCT_REGISTRY.iterrows():
@@ -452,6 +455,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in sales_branch_combined.iterrows():
         try:
@@ -467,6 +471,7 @@ def processing() :
             # print(query)
             pass
     export_cursor.commit()
+    progress.update(1)
 
 
     for index, row in go_staff_course.iterrows():
@@ -479,6 +484,8 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
+    
 
     #STAFF_TRAINING
     for index, row in staff_training_combined.iterrows():
@@ -495,6 +502,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in satisfaction.iterrows():
         try:
@@ -509,6 +517,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in order_method.iterrows():
         try:
@@ -523,6 +532,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in return_reason.iterrows():
         try:
@@ -537,6 +547,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in GO_SALES_INVENTORY_LEVELSData.iterrows():
         try:
@@ -551,6 +562,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in GO_SALES_PRODUCT_FORECASTData.iterrows():
         try:
@@ -565,6 +577,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
     for index, row in retailer.iterrows():
         try:
@@ -592,6 +605,7 @@ def processing() :
             pass
             # print(query)
     export_cursor.commit()
+    progress.update(1)
 
 
 
@@ -613,7 +627,10 @@ def processing() :
         except pyodbc.Error:
             print(query)
     export_cursor.commit()
+    progress.update(1)
 
+    progress.close()
+    
     # for index, row in sales_staff_combined.iterrows():
     #     try:
     #         query = None

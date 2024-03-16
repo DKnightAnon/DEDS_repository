@@ -55,3 +55,17 @@
 2024-03-16 20:59:19.499 | INFO     | script:processing:341 - Creating Dimension Tables.
 2024-03-16 20:59:19.520 | INFO     | script:processing:389 - Creating Fact Tables.
 2024-03-16 20:59:19.572 | INFO     | script:processing:433 - Attempting database insertion.
+2024-03-16 21:46:08.004 | INFO     | script:processing:14 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 21:46:11.080 | INFO     | script:processing:33 - Establishing connection with database.
+2024-03-16 21:46:11.080 | INFO     | script:processing:35 - Creating Cursor.
+2024-03-16 21:46:11.081 | INFO     | script:processing:46 - Attempting to connect to source data
+2024-03-16 21:46:11.082 | SUCCESS  | script:processing:52 - Connected to go_sales sqlite.
+2024-03-16 21:46:11.083 | SUCCESS  | script:processing:57 - Connected to go_crm sqlite.
+2024-03-16 21:46:11.083 | SUCCESS  | script:processing:62 - Connected to go_staff sqlite.
+2024-03-16 21:46:11.084 | INFO     | script:processing:72 - Creating variables for database tables.
+2024-03-16 21:46:11.411 | INFO     | script:processing:204 - Converting table columns to optimal types.
+2024-03-16 21:46:11.594 | INFO     | script:processing:342 - Creating Dimension Tables.
+2024-03-16 21:46:11.621 | INFO     | script:processing:390 - Creating Fact Tables.
+2024-03-16 21:46:11.678 | INFO     | script:processing:434 - Attempting database insertion.
+2024-03-16 21:46:55.137 | SUCCESS  | script:processing:650 - Insertion Complete.
+2024-03-16 21:46:55.137 | INFO     | script:processing:654 - Data ETL complete.
