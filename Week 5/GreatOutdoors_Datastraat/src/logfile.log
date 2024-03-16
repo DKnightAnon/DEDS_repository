@@ -1,0 +1,57 @@
+2024-03-16 20:03:11.893 | INFO     | script:processing:17 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:03:14.967 | INFO     | script:processing:40 - Establishing connection with database.
+2024-03-16 20:03:14.968 | INFO     | script:processing:42 - Creating Cursor.
+2024-03-16 20:03:14.968 | INFO     | script:processing:56 - Attempting to connect to source data
+2024-03-16 20:03:14.971 | SUCCESS  | script:dataframe:62 - Connected to go_sales sqlite.
+2024-03-16 20:03:14.973 | SUCCESS  | script:dataframe:67 - Connected to go_crm sqlite.
+2024-03-16 20:03:14.975 | SUCCESS  | script:dataframe:72 - Connected to go_staff sqlite.
+2024-03-16 20:03:14.976 | INFO     | script:processing:90 - Creating variables for database tables.
+2024-03-16 20:24:49.089 | INFO     | __main__:<module>:8 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:24:57.964 | INFO     | __main__:<module>:19 - Establishing connection with database.
+2024-03-16 20:24:57.966 | INFO     | __main__:<module>:21 - Creating Cursor.
+2024-03-16 20:25:05.555 | INFO     | __main__:<module>:6 - Attempting to connect to source data
+2024-03-16 20:25:05.557 | SUCCESS  | __main__:dataframe:12 - Connected to go_sales sqlite.
+2024-03-16 20:25:05.558 | SUCCESS  | __main__:dataframe:17 - Connected to go_crm sqlite.
+2024-03-16 20:25:05.559 | SUCCESS  | __main__:dataframe:22 - Connected to go_staff sqlite.
+2024-03-16 20:25:15.236 | INFO     | __main__:<module>:4 - Creating variables for database tables.
+2024-03-16 20:26:47.716 | INFO     | __main__:<module>:6 - Converting table columns to optimal types.
+2024-03-16 20:36:52.662 | INFO     | script:processing:13 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:36:55.745 | INFO     | script:processing:32 - Establishing connection with database.
+2024-03-16 20:36:55.746 | INFO     | script:processing:34 - Creating Cursor.
+2024-03-16 20:36:55.746 | INFO     | script:processing:45 - Attempting to connect to source data
+2024-03-16 20:36:55.747 | SUCCESS  | script:dataframe:51 - Connected to go_sales sqlite.
+2024-03-16 20:36:55.748 | SUCCESS  | script:dataframe:56 - Connected to go_crm sqlite.
+2024-03-16 20:36:55.748 | SUCCESS  | script:dataframe:61 - Connected to go_staff sqlite.
+2024-03-16 20:36:55.749 | INFO     | script:processing:71 - Creating variables for database tables.
+2024-03-16 20:47:02.302 | INFO     | script:processing:13 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:47:05.383 | INFO     | script:processing:32 - Establishing connection with database.
+2024-03-16 20:47:05.383 | INFO     | script:processing:34 - Creating Cursor.
+2024-03-16 20:47:05.384 | INFO     | script:processing:45 - Attempting to connect to source data
+2024-03-16 20:47:05.385 | SUCCESS  | script:dataframe:51 - Connected to go_sales sqlite.
+2024-03-16 20:47:05.386 | SUCCESS  | script:dataframe:56 - Connected to go_crm sqlite.
+2024-03-16 20:47:05.387 | SUCCESS  | script:dataframe:61 - Connected to go_staff sqlite.
+2024-03-16 20:47:05.388 | INFO     | script:processing:71 - Creating variables for database tables.
+2024-03-16 20:52:43.802 | INFO     | script:processing:13 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:52:46.882 | INFO     | script:processing:32 - Establishing connection with database.
+2024-03-16 20:52:46.883 | INFO     | script:processing:34 - Creating Cursor.
+2024-03-16 20:52:46.883 | INFO     | script:processing:45 - Attempting to connect to source data
+2024-03-16 20:52:46.884 | SUCCESS  | script:processing:51 - Connected to go_sales sqlite.
+2024-03-16 20:52:46.884 | SUCCESS  | script:processing:56 - Connected to go_crm sqlite.
+2024-03-16 20:52:46.885 | SUCCESS  | script:processing:61 - Connected to go_staff sqlite.
+2024-03-16 20:52:46.886 | INFO     | script:processing:71 - Creating variables for database tables.
+2024-03-16 20:52:47.234 | INFO     | script:processing:203 - Converting table columns to optimal types.
+2024-03-16 20:52:47.391 | INFO     | script:processing:341 - Creating Dimension Tables.
+2024-03-16 20:52:47.423 | INFO     | script:processing:389 - Creating Fact Tables.
+2024-03-16 20:52:47.612 | INFO     | script:processing:433 - Attempting database insertion.
+2024-03-16 20:59:15.948 | INFO     | script:processing:13 - Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal
+2024-03-16 20:59:19.023 | INFO     | script:processing:32 - Establishing connection with database.
+2024-03-16 20:59:19.023 | INFO     | script:processing:34 - Creating Cursor.
+2024-03-16 20:59:19.024 | INFO     | script:processing:45 - Attempting to connect to source data
+2024-03-16 20:59:19.025 | SUCCESS  | script:processing:51 - Connected to go_sales sqlite.
+2024-03-16 20:59:19.026 | SUCCESS  | script:processing:56 - Connected to go_crm sqlite.
+2024-03-16 20:59:19.027 | SUCCESS  | script:processing:61 - Connected to go_staff sqlite.
+2024-03-16 20:59:19.027 | INFO     | script:processing:71 - Creating variables for database tables.
+2024-03-16 20:59:19.359 | INFO     | script:processing:203 - Converting table columns to optimal types.
+2024-03-16 20:59:19.499 | INFO     | script:processing:341 - Creating Dimension Tables.
+2024-03-16 20:59:19.520 | INFO     | script:processing:389 - Creating Fact Tables.
+2024-03-16 20:59:19.572 | INFO     | script:processing:433 - Attempting database insertion.

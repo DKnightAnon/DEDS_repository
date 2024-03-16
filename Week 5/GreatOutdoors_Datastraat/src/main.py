@@ -1,9 +1,9 @@
 
-import processing
+import script
 
 def main() -> None:
     pass
-    processing.process()
+    script.processing()
 
 if __name__ == "__main__":
     main()

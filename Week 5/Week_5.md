@@ -69,7 +69,8 @@ Gebruik de brongegevens als startpunt.
 ## Logging
 Maak gebruik van Loguru : ``poetry add loguru``
 
-
+## Extra's
+- Onderzoeken naar hoe je variables kan invoeren bij programma start zodat er gekozen kan worden voor verbinding met laptop/desktop database?
 
 
 
