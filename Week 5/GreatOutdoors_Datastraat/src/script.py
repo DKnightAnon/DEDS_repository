@@ -13,20 +13,11 @@ def processing() :
     
     logger.info(f"Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal")
 
-    laptop = 'KNIGHTANON-LAPT\\SQLEXPRESS'
-    local = '(localdb)\\MSSQLLocalDB'
-    local2 = 'localhost'
-    desktop = 'KNIGHTANON-DESK\\SQLEXPRESS'
-    database = 'GreatOutdoorsDW'
 
-    DB = {
-        'servername': desktop,
-        'database' : database
-    }
 
     export_conn = pyodbc.connect('DRIVER={SQL Server};' +
-                                'SERVER='+ DB['servername'] + ';'
-                                'DATABASE='+DB['database'] +';'
+                                'SERVER='+ settings.DB['servername'] + ';'
+                                'DATABASE='+ settings.DB['database'] +';'
                                 +'Trusted_Connection=yes'
                                 #  +'integrated security = true' 
                                 )
@@ -630,22 +621,7 @@ def processing() :
     progress.update(1)
 
     progress.close()
-    
-    # for index, row in sales_staff_combined.iterrows():
-    #     try:
-    #         query = None
-    #         export_cursor.execute(query)
-    #     except pyodbc.Error:
-    #         print(query)
-    # export_cursor.commit()
 
-    # for index, row in sales_staff_combined.iterrows():
-    #     try:
-    #         query = None
-    #         export_cursor.execute(query)
-    #     except pyodbc.Error:
-    #         print(query)
-    # export_cursor.commit()
 
     logger.success("Insertion Complete.")
 
