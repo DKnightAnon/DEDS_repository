@@ -15,9 +15,11 @@ class Settings():
         'database' : database
     }
 
-
+    
 
 
 
 settings = Settings()
 logger.add("logfile.log")
+
+# print(settings.DB["servername"])
