@@ -1,0 +1,448 @@
+Id,Name,Shape Library,Page ID,Contained By,Group,Line Source,Line Destination,Source Arrow,Destination Arrow,Status,Text Area 1,Text Area 2,Text Area 3,Text Area 4,Text Area 5,Text Area 6,Text Area 7,Text Area 8,Text Area 9,Comments
+1,Document,,,,,,,,,Draft,Sterdiagram,,,,,,,,,
+2,Page,,,,,,,,,,Sterdiagram,,,,,,,,,
+3,Rectangle,Geometric Shapes,2,,,,,,,,,,,,,,,,,
+4,Table,Tables,2,,,,,,,,Product,Introduction_Date date,Product_Type number,Language name,"Product Product_Code, Production_Cost, Margin, Product_Image, Product_Name, Product_Description","Product_Type Product_Type_Code, Product_Line_Code, Product_Type_EN","Product_Line Product_Line_Code, Product_Line_EN",,,
+5,Table,Tables,2,,,,,,,,Retailer_Site,COUNTRY_CODE name,Active_Indicator boolean,REGION name,CITY name,POSTAL ZONE code,"Retailer_Site Retailer_Site_Code, Retailer_Code",,,
+6,Table,Tables,2,,,,,,,,Date,"Year
+	number","Month
+	number","Day
+	number","Date
+	date",,,,,
+7,Table,Tables,2,,,,,,,,Retailer,Retailer_Type_Code number,,"Retailer Code, CodeMR, CompanyName",,,,,,
+8,Table,Tables,2,,,,,,,,Retailer_Contact,POSITION_EN name,FAX number,Gender text,"Retailer_Contact Retailer_Contact_Code, FIRST_NAME, LAST_NAME, FULL_NAME, Extension, Retailer_Site_Code",,,,,
+9,Table,Tables,2,,,,,,,,Sales_Branch,COUNTRY_CODE name,,REGION name,CITY name,POSTAL ZONE code,"Sales_Branch Sales_Branch_Code, Address1, Address2, POSTAL_ADDRESS",,,
+10,Table,Tables,2,,,,,,,,go_sales.Sales_Staff,POSITION_EN name,WORK_PHONE number,FAX number,"Sales_Staff Sales_Staff_Code, FIRST_NAME, LAST_NAME, DATE_HIRED, EXTENSION, EMAIL",SALES_BRANCH_COUNTRY,SALES_BRANCH_CODE number,,,
+11,Table,Tables,2,,,,,,,,Order_Method,,,,"Order_Method Order_Method_Code, Order_Method_EN",,,,,
+12,Table,Tables,2,,,,,,,,Return_Reason,,,,"Return_Reason Return_Reason_Code, Return_Reason_EN",,,,,
+13,Table,Tables,2,,,,,,,,go_staff.Course,,,,"Course Course_Code, Description",,,,,
+14,Table,Tables,2,,,,,,,,Order_Details,ORDER_NUMBER ORDER_DETAIL_CODE  Order_Details_Quantity Order_Details_UNIT_PRICE Order_Details_UNIT_SALE_PRICE Order_Details_UNIT_COST ORDER_HEADER_Order_Method Order_Details_Turnover Order_Details_Discount_Percentage Order_Details_Profit   DAY_date Sales_Branch_Code Retailer_Site_Code Order_Method_Code Retailer_Contact_Code Product_Number,,,,,,,,
+15,Table,Tables,2,,,,,,,,Staff_Training,Year Sales_Staff_Code  FULL_NAME POSITION_EN  COURSE_CODE COURSE_DESCRIPTION  SATISFACTION_TYPE_CODE SATISFACTION_TYPE_DESCRIPTION,,,,,,,,
+16,Table,Tables,2,,,,,,,,Returned_Item,Returned_Item_Code  Return_Date Return_Quantity    Return_Reason Product_Number,,,,,,,,
+17,Table,Tables,2,,,,,,,,GO_SALES_PRODUCT_FORECASTData,PRODUCT_NUMBER Year Month  Expected_Volume,,,,,,,,
+18,Table,Tables,2,,,,,,,,GO_SALES_INVENTORY_LEVELSData,INVENTORY_YEAR INVENTORY_MONTH PRODUCT_NUMBER  INVENTORY_COUNT,,,,,,,,
+19,Table,Tables,2,,,,,,,,sales_demographic,DEMOGRAPHIC_CODE  SALES_PERCENT  AGE_GROUP_CODE RETAILER_CODEMR,,,,,,,,
+20,Table,Tables,2,,,,,,,,Retailer_Headquarters,Country,PHONE number,FAX number,Region,City,Postal_Zone,"RETAILER_HEADQUARTERS Retailer_Codenr, Retailer_Name, Address1, Address2","SEGMENT SEGMENT_CODE, LANGUAGE, SEGMENT_NAME, SEGMENT_DESCRIPTION",
+21,Sticky note,Sticky Notes,2,,,,,,,,"Geaggregeerd feit  Feit #1, #2",,,,,,,,,
+22,Table,Tables,2,,,,,,,,go_crm.Age_Group,UPPER_AGE age,LOWER_AGE age,AGE_GROUP Age_Group_Code,,,,,,
+23,Sticky note,Sticky Notes,2,,,,,,,,Feit 3,,,,,,,,,
+24,Sticky note,Sticky Notes,2,,,,,,,,"Feit 4, 5",,,,,,,,,
+25,Sticky note,Sticky Notes,2,,,,,,,,Feit 7,,,,,,,,,
+26,Sticky note,Sticky Notes,2,,,,,,,,Feit 6,,,,,,,,,
+27,Sticky note,Sticky Notes,2,,,,,,,,Dit samenvoegen tot 1 tabel?,,,,,,,,,
+28,Sticky note,Sticky Notes,2,,,,,,,,Dit samenvoegen met go_staff.sales_branch,,,,,,,,,
+29,Table,Tables,2,,,,,,,,Satisfaction,,,Sales_Staff_Code,"SATISFACTION_TYPE Satisfaction_Type_Code, Satisfaction_Type_EN",,"Satisfaction Year, S",,,
+30,Line,,2,,,4,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+31,Line,,2,,,13,15,None,CFN ERD Many Arrow,,,,,,,,,,,
+32,Line,,2,,,29,15,None,CFN ERD Many Arrow,,,,,,,,,,,
+33,Line,,2,,,11,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+34,Line,,2,,,6,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+35,Line,,2,,,9,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+36,Line,,2,,,5,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+37,Line,,2,,,8,14,None,CFN ERD Many Arrow,,,,,,,,,,,
+38,Line,,2,,,4,16,None,CFN ERD Many Arrow,,,,,,,,,,,
+39,Line,,2,,,12,16,None,CFN ERD Many Arrow,,,,,,,,,,,
+40,Line,,2,,,16,14,None,None,,Foreign Key naar Order_Detail?,,,,,,,,,
+41,Line,,2,,,4,17,None,CFN ERD Many Arrow,,,,,,,,,,,
+42,Line,,2,,,17,14,None,None,,Koppeling voor ML?,,,,,,,,,
+43,Line,,2,,,4,18,None,CFN ERD Many Arrow,,,,,,,,,,,
+44,Line,,2,,,18,14,None,None,,Koppeling om verkochte  producten af te schrijven?,,,,,,,,,
+45,Line,,2,,,6,15,None,CFN ERD Many Arrow,,,,,,,,,,,
+46,Line,,2,,,10,15,None,CFN ERD Many Arrow,,,,,,,,,,,
+47,Line,,2,,,16,18,None,None,,Koppeling om teruggebrachte  producten bij te schrijven?,,,,,,,,,
+48,Line,,2,,,7,5,Arrow,None,,,,,,,,,,,
+49,Line,,2,,,8,5,None,Arrow,,,,,,,,,,,
+50,Line,,2,,,22,19,None,CFN ERD Many Arrow,,,,,,,,,,,
+51,Line,,2,,,20,19,None,CFN ERD Many Arrow,,,,,,,,,,,
+52,Line,,2,,,10,9,None,CFN ERD Many Arrow,,,,,,,,,,,
+53,Page,,,,,,,,,,ETL Diagram,,,,,,,,,
+54,Process,Flowchart Shapes/Containers,53,,,,,,,,,,,,,,,,,
+55,Text,Standard,53,,,,,,,,,,,,,,,,,
+56,Process,Flowchart Shapes/Containers,53,,,,,,,,,,,,,,,,,
+57,Rectangle,Geometric Shapes,53,,,,,,,,,,,,,,,,,
+58,Rectangle,Geometric Shapes,53,,,,,,,,,,,,,,,,,
+59,Process,Flowchart Shapes/Containers,53,,,,,,,,,,,,,,,,,
+60,Process,Flowchart Shapes/Containers,53,,,,,,,,,,,,,,,,,
+61,Table,Tables,53,,,,,,,,Order_Details,ORDER_NUMBER ORDER_DETAIL_CODE  Order_Details_Quantity Order_Details_UNIT_PRICE Order_Details_UNIT_SALE_PRICE Order_Details_UNIT_COST ORDER_HEADER_Order_Method Order_Details_Turnover Order_Details_Discount_Percentage Order_Details_Profit   DAY_date Sales_Branch_Code Retailer_Site_Code Retailer_Contact_Code ,,,,,,,,
+62,Process,Flowchart Shapes/Containers,53,,,,,,,,,,,,,,,,,
+63,Class,UML,53,,,,,,,,ORDER_HEADER,"
+- ORDER_NUMBER
+- RETAILER_NAME
+- RETAILER_SITE_CODE
+- RETAILER_CONTACT_CODE
+- SALES_STAFF_CODE
+- ORDER_DATE
+- ORDER_METHOD_CODE",,,,,,,,
+64,Class,UML,53,,,,,,,,ORDER_DETAILS,"
+- ORDER_DETAIL_CODE
+- ORDER_NUMBER
+- PRODUCT_NUMBER
+- QUANTITY
+- UNIT_COST
+- UNIT_PRICE
+- UNIT_SALE_PRICE",,,,,,,,
+65,Sticky note,Sticky Notes,53,,,,,,,,Afgeleide meetwaardes nog modelleren,,,,,,,,,
+66,Class,UML,53,,,,,,,,ORDER_METHOD,​- ORDER_METHOD_CODE - ORDER_METHOD_NAME_EN,,,,,,,,
+67,MinimalTextBlock,Standard,53,,,,,,,,JOIN ORDER_HEADER.ORDER_METHOD_CODE = ORDER_METHOD.ORDER_METHOD_CODE,,,,,,,,,
+68,Table,Tables,53,,,,,,,,Date,"Year
+	number","Month
+	number","Day
+	number","Date
+	date",,,,,
+69,Class,UML,53,,,,,,,,PRODUCT,"
+- PRODUCT_NUMBER
+- INTRODUCTION_DATE
+- PRODUCT_TYPE_CODE
+- PRODUCTION_COST
+- MARGIN
+- PRODUCT_IMAGE
+- LANGUAGE
+- PRODUCT_NAME
+- DESCRIPTION",,,,,,,,
+70,Class,UML,53,,,,,,,,RETAILER_SITE,"​- RETAILER_SITE_CODE
+- RETAILER_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE
+- ACTIVE_INDICATOR",,,,,,,,
+71,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE",,,,,,,,
+72,Class,UML,53,,,,,,,,retailer_contact,​- RETAILER_CONTACT_CODE - RETAILER_SITE_CODE - FIRST_NAME - LAST_NAME - JOB_POSITION_EN - EXTENSION - FAX - E_MAIL - GENDER ,,,,,,,,
+73,Table,Tables,53,,,,,,,,Returned_Item,Returned_Item_Code ORDER_DETAIL_CODE Return_Date Return_Quantity    Return_Reason Product_Number,,,,,,,,
+74,Class,UML,53,,,,,,,,PRODUCT_LINE,"
+- PRODUCT_LINE_CODE
+- PRODUCT_LINE_EN",,,,,,,,
+75,Class,UML,53,,,,,,,,PRODUCT_TYPE,"
+
+- PRODUCT_TYPE_CODE
+- PRODUCT_LINE_CODE
+- PRODUCT_TYPE_EN",,,,,,,,
+76,Class,UML,53,,,,,,,,PRODUCT_LINE,"
+- PRODUCT_LINE_CODE
+- PRODUCT_LINE_EN",,,,,,,,
+77,Class,UML,53,,,,,,,,PRODUCT_TYPE,"
+
+- PRODUCT_TYPE_CODE
+- PRODUCT_LINE_CODE
+- PRODUCT_TYPE_EN",,,,,,,,
+78,Class,UML,53,,,,,,,,RETURN_REASON,"​-
+- RETURN_REASON_CODE
+- RETURN_DESCRIPTION_EN",,,,,,,,
+79,Class,UML,53,,,,,,,,RETURNED_ITEM,"​- RETURN_CODE
+- RETURN_DATE
+- ORDER_DETAIL_CODE
+- RETURN_REASON_CODE
+- RETURN_QUANTITY",,,,,,,,
+80,Class,UML,53,,,,,,,,PRODUCT,"
+- PRODUCT_NUMBER
+- INTRODUCTION_DATE
+- PRODUCT_TYPE_CODE
+- PRODUCTION_COST
+- MARGIN
+- PRODUCT_IMAGE
+- LANGUAGE
+- PRODUCT_NAME
+- DESCRIPTION",,,,,,,,
+81,Class,UML,53,,,,,,,,ORDER_DETAILS,"
+- ORDER_DETAIL_CODE
+- ORDER_NUMBER
+- PRODUCT_NUMBER
+- QUANTITY
+- UNIT_COST
+- UNIT_PRICE
+- UNIT_SALE",,,,,,,,
+82,Class,UML,53,,,,,,,,ORDER_HEADER,"
+- ORDER_NUMBER
+- RETAILER_NAME
+- RETAILER_SITE_CODE
+- RETAILER_CONTACT_CODE
+- SALES_STAFF_CODE
+- ORDER_DATE
+- ORDER_METHOD_CODE",,,,,,,,
+83,MinimalTextBlock,Standard,53,,,,,,,,JOIN Returned_Item.Return_Reason_Code = Return_Reason.Return_Description_EN,,,,,,,,,
+84,Table,Tables,53,,,,,,,,Staff_Training,Year Sales_Staff_Code  FULL_NAME POSITION_EN  COURSE_CODE   SATISFACTION_TYPE_CODE ,,,,,,,,
+85,Class,UML,53,,,,,,,,SATISFACTION,"YEAR
+SALES_STAFF_CODE
+SATISFACTION_TYPE_CODE
+",,,,,,,,
+86,Class,UML,53,,,,,,,,SALES_STAFF,"​- SALES_STAFF_CODE
+- FIRST_NAME
+- LAST_NAME
+- POSITION_
+- WORK_PHONE
+- EXTENSION
+- FAX
+- EMAIL
+- DATE_HIRED
+- SALES_BRANCH_CODE
+- MANAGER_CODE
+- SATISFACTION",,,,,,,,
+87,Class,UML,53,,,,,,,,COURSE,"
+- COURSE_CODE
+- COURSE_DESCRIPTION
+
+",,,,,,,,
+88,Class,UML,53,,,,,,,,SATISFACTION_TYPE,"
+- SATISFACTION_TYPE_CODE
+- SATISFACTION_TYPE_DESCRIPTION
+",,,,,,,,
+89,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE
+- SALES_sTAFF
+",,,,,,,,
+90,Class,UML,53,,,,,,,,TRAINING,"
+- YEAR
+-  SALES_STAFF_CODE
+- COURSE_CODE",,,,,,,,
+91,Sticky note,Sticky Notes,53,,,,,,,,Transformaties vermelden,,,,,,,,,
+92,Class,UML,53,,,,,,,,PRODUCT_LINE,"
+- PRODUCT_LINE_CODE
+- PRODUCT_LINE_EN",,,,,,,,
+93,Class,UML,53,,,,,,,,PRODUCT,"
+- PRODUCT_NUMBER
+- INTRODUCTION_DATE
+- PRODUCT_TYPE_CODE
+- PRODUCTION_COST
+- MARGIN
+- PRODUCT_IMAGE
+- LANGUAGE
+- PRODUCT_NAME
+- DESCRIPTION",,,,,,,,
+94,Class,UML,53,,,,,,,,PRODUCT_TYPE,"
+
+- PRODUCT_TYPE_CODE
+- PRODUCT_LINE_CODE
+- PRODUCT_TYPE_EN",,,,,,,,
+95,Table,Tables,53,,,,,,,,Product,PRODUCT_NUMBER  INTRODUCTION_DATE Product_Type_CODE PRODUCT_TYPE_EN PRODUCT_LINE_CODE PRODUCT_LINE_EN  PRODUCTION_COST MARGIN PRODUCT_IMAGE PRODUCT_NAME PRODUCT_DESCRIPTION_EN LANGUAGE ,,,,,,,,
+96,Class,UML,53,,,,,,,,COUNTRY,"
+- COUNTRY_CODE
+- COUNTRY
+- LANGUAGE 
+- CURRENCY",,,,,,,,
+97,Class,UML,53,,,,,,,,SALES_STAFF,"
+- SALES_STAFF_CODE
+- FIRST_NAME
+- LAST_NAME
+- POSITON_EN
+- WORK_PHONE
+- EXTENSION
+- FAX
+- EMAIL
+- DATE_HIRED
+- SALES_BRANCH_CODE",,,,,,,,
+98,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE",,,,,,,,
+99,Class,UML,53,,,,,,,,SALES_STAFF,"​- SALES_STAFF_CODE
+- FIRST_NAME
+- LAST_NAME
+- POSITION_
+- WORK_PHONE
+- EXTENSION
+- FAX
+- EMAIL
+- DATE_HIRED
+- SALES_BRANCH_CODE
+- MANAGER_CODE",,,,,,,,
+100,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE
+",,,,,,,,
+101,Table,Tables,53,,,,,,,,SALES_STAFF,SALES_STAFF_CODE  FIRST_NAME  LAST_NAME  FULL_NAME  POSITION_EN  WORK_PHONE  EXTENSION  FAX  EMAIL  DATE_HIRED  SALES_BRANCH_CODE  SALES_BRANCH_COUNTRY  MANAGER_CODE,,,,,,,,
+102,Table,Tables,53,,,,,,,,SALES_BRANCH,SALES_BRANCH_CODE  ADDRESS1  ADDRESS2  POSTAL_ADDRESS  COUNTRY_CODE  REGION  CITY  POSTAL_ZONE,,,,,,,,
+103,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE",,,,,,,,
+104,Class,UML,53,,,,,,,,SALES_BRANCH,"
+- SALES_BRANCH_CODE
+- ADRESS1
+- ADRESS2
+- CITY
+- REGION
+- POSTAL_ZONE
+- COUNTRY_CODE",,,,,,,,
+105,Class,UML,53,,,,,,,,COUNTRY,"
+- COUNTRY_CODE
+- COUNTRY
+- LANGUAGE 
+- CURRENCY",,,,,,,,
+106,MinimalTextBlock,Standard,53,,,,,,,,JOIN SALES_STAFF.SALES_BRANCH_CODE = SALES_BRANCH.SALES_BRANCH.CODE SALES_BRANCH.COUNTRY_CODE = COUNTRY.COUNTRY_CODE,,,,,,,,,
+107,MinimalTextBlock,Standard,53,,,,,,,,JOIN PRODUCT.PRODUCT_TYPE_CODE = PRODUCT_TYPE.PRODUCT_TYPE_CODE PRODUCT_TYPE.PRODUCT_LINE_CODE = PRODUCT_LINE.PRODUCT_LINE_CODE,,,,,,,,,
+108,Table,Tables,53,,,,,,,,sales_demographic,DEMOGRAPHIC_CODE  UPPER_AGE LOWER_AGE SALES_PERCENT   AGE_GROUP_CODE  RETAILER_CODEMR,,,,,,,,
+109,Class,UML,53,,,,,,,,retailer_headquarters,​- RETAILER_CODEMR - RETAILER_NAME - ADDRESS1 - ADDRESS2 - CITY - REGION - POSTAL_ZONE - COUNTRY_CODE - PHONE - FAX - SEGMENT_CODE,,,,,,,,
+110,Class,UML,53,,,,,,,,age_group,​- AGE_GROUP_CODE - UPPER_AGE - LOWER_AGE,,,,,,,,
+111,Class,UML,53,,,,,,,,retailer_segment,"​- SEGMENT_CODE - LANGUAGE
+- SEGMENT_NAME
+-  SEGMENT_DESCRIPTION",,,,,,,,
+112,Class,UML,53,,,,,,,,sales_demographic,"​- DEMOGRAPHIC_CODE
+- RETAILER_CODEMR
+- AGE_GROUP_CODE
+- SALES_PERCENT",,,,,,,,
+113,Class,UML,53,,,,,,,,sales_territory,"​- SALES_TERRITORY_CODE
+- TERRITORY_NAME_EN",,,,,,,,
+114,Class,UML,53,,,,,,,,country,"​- COUNTRY_CODE - COUNTRY_EN - FLAG_IMAGE
+- SALES_TERRITORY_CODE",,,,,,,,
+115,Class,UML,53,,,,,,,,retailer_site,"​- RETAILER_SITE_CODE - RETAILER_CODE - ADDRESS1 - ADDRESS2  - CITY - REGION - POSTAL_ZONE
+- COUNTRY_CODE
+- ACTIVE_INDICATOR",,,,,,,,
+116,Class,UML,53,,,,,,,,retailer_contact,​- RETAILER_CONTACT_CODE - RETAILER_SITE_CODE - FIRST_NAME - LAST_NAME - JOB_POSITION_EN - EXTENSION - FAX - E_MAIL - GENDER ,,,,,,,,
+117,Sticky note,Sticky Notes,53,,,,,,,,RETAILER_CODEMR = RETAILER_CONTACT_CODE?,,,,,,,,,
+118,MinimalTextBlock,Standard,53,,,,,,,,"JOIN TRAINING.SALES_STAFF_CODE = SALES_STAFF.SALES_STAFF_CODE TRAINING.COURSE_CODE = COURSE.COURSE_CODE SATISFACTION.YEAR,SALES_STAFF_CODE = TRAINING.YEAR, SALES_STAFF_CODE SATISFACTION.SATISFACTION_TYPE_CODE = SATISFACTION_TYPE.SATISFACTION_TYPE_CODE ",,,,,,,,,
+119,Table,Tables,53,,,,,,,,GO_SALES_PRODUCT_FORECASTData,PRODUCT_NUMBER Year Month  Expected_Volume,,,,,,,,
+120,Table,Tables,53,,,,,,,,GO_SALES_INVENTORY_LEVELSData,INVENTORY_YEAR INVENTORY_MONTH PRODUCT_NUMBER  INVENTORY_COUNT,,,,,,,,
+121,Class,UML,53,,,,,,,,GO_SALES_INVENTORY_LEVELSData,​- INVENTORY_YEAR - INVENTORY_MONTH - PRODUCT_NUMBER - INVENTORY_COUNT,,,,,,,,
+122,Class,UML,53,,,,,,,,GO_SALES_PRODUCT_FORECASTData,"​- PRODUCT_NUMBER
+- YEAR - MONTH - EXPECTED_VOLUME",,,,,,,,
+123,Line,,53,,,63,61,None,Arrow,,,,,,,,,,,
+124,Line,,53,,,63,61,None,Arrow,,,,,,,,,,,
+125,Line,,53,,,63,61,None,Arrow,,,,,,,,,,,
+126,Line,,53,,,64,61,None,Arrow,,,,,,,,,,,
+127,Line,,53,,,64,61,None,Arrow,,,,,,,,,,,
+128,Line,,53,,,64,61,None,Arrow,,,,,,,,,,,
+129,Line,,53,,,64,61,None,Arrow,,,,,,,,,,,
+130,Line,,53,,,64,61,None,Arrow,,,,,,,,,,,
+131,Line,,53,,,70,61,None,Arrow,,,,,,,,,,,
+132,Line,,53,,,127,130,Measure,Measure,,,,,,,,,,,
+133,Line,,53,,,132,61,None,Arrow,,UNIT_SALE_PRICE * QUANTITY,,,,,,,,,
+134,Line,,53,,,130,133,Measure,Measure,,,,,,,,,,,
+135,Line,,53,,,134,61,None,Arrow,,Sale_Price - Unit_Cost,,,,,,,,,
+136,Line,,53,,,72,61,None,Arrow,,,,,,,,,,,
+137,Line,,53,,,66,63,None,Arrow,,,,,,,,,,,
+138,Line,,53,,,71,61,None,Arrow,,,,,,,,,,,
+139,Line,,53,,,69,64,None,Arrow,,,,,,,,,,,
+140,Line,,53,,,68,63,None,Arrow,,,,,,,,,,,
+141,Line,,53,,,72,70,None,Arrow,,,,,,,,,,,
+142,Line,,53,,,69,75,None,Arrow,,,,,,,,,,,
+143,Line,,53,,,75,74,None,Arrow,,,,,,,,,,,
+144,Line,,53,,,80,77,None,Arrow,,,,,,,,,,,
+145,Line,,53,,,77,76,None,Arrow,,,,,,,,,,,
+146,Line,,53,,,79,80,None,Arrow,,,,,,,,,,,
+147,Line,,53,,,79,78,None,Arrow,,,,,,,,,,,
+148,Line,,53,,,79,81,None,Arrow,,,,,,,,,,,
+149,Line,,53,,,81,82,None,Arrow,,,,,,,,,,,
+150,Line,,53,,,79,73,None,Arrow,,,,,,,,,,,
+151,Line,,53,,,80,73,None,Arrow,,,,,,,,,,,
+152,Line,,53,,,79,73,None,Arrow,,,,,,,,,,,
+153,Line,,53,,,79,73,None,Arrow,,,,,,,,,,,
+154,Line,,53,,,78,73,None,Arrow,,,,,,,,,,,
+155,Line,,53,,,90,86,None,Arrow,,,,,,,,,,,
+156,Line,,53,,,90,87,None,Arrow,,,,,,,,,,,
+157,Line,,53,,,90,85,None,Arrow,,,,,,,,,,,
+158,Line,,53,,,85,88,None,Arrow,,,,,,,,,,,
+159,Line,,53,,,86,89,None,Arrow,,,,,,,,,,,
+160,Line,,53,,,93,94,None,Arrow,,,,,,,,,,,
+161,Line,,53,,,94,92,None,Arrow,,,,,,,,,,,
+162,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+163,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+164,Line,,53,,,94,95,None,Arrow,,,,,,,,,,,
+165,Line,,53,,,94,95,None,Arrow,,,,,,,,,,,
+166,Line,,53,,,92,95,None,Arrow,,,,,,,,,,,
+167,Line,,53,,,92,95,None,Arrow,,,,,,,,,,,
+168,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+169,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+170,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+171,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+172,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+173,Line,,53,,,93,95,None,Arrow,,,,,,,,,,,
+174,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+175,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+176,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+177,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+178,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+179,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+180,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+181,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+182,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+183,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+184,Line,,53,,,96,101,None,Arrow,,,,,,,,,,,
+185,Line,,53,,,97,101,None,Arrow,,,,,,,,,,,
+186,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+187,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+188,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+189,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+190,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+191,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+192,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+193,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+194,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+195,Line,,53,,,99,101,None,Arrow,,,,,,,,,,,
+196,Line,,53,,,99,100,None,Arrow,,,,,,,,,,,
+197,Line,,53,,,99,99,None,Arrow,,,,,,,,,,,
+198,Line,,53,,,97,98,None,Arrow,,,,,,,,,,,
+199,Line,,53,,,100,96,None,Arrow,,,,,,,,,,,
+200,Line,,53,,,98,96,None,Arrow,,,,,,,,,,,
+201,Line,,53,,,176,101,Measure,Arrow,,FIRST_NAME + LAST_NAME,,,,,,,,,
+202,Line,,53,,,177,201,Measure,None,,,,,,,,,,,
+203,Line,,53,,,186,201,Measure,None,,,,,,,,,,,
+204,Line,,53,,,187,202,Measure,None,,,,,,,,,,,
+205,Line,,53,,,103,105,None,Arrow,,,,,,,,,,,
+206,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+207,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+208,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+209,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+210,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+211,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+212,Line,,53,,,103,102,None,Arrow,,,,,,,,,,,
+213,Line,,53,,,207,102,Measure,Arrow,,ADDRESS1 + POSTAL_ZONE,,,,,,,,,
+214,Line,,53,,,211,213,Measure,None,,,,,,,,,,,
+215,Line,,53,,,104,206,None,Measure,,,,,,,,,,,
+216,Line,,53,,,104,207,None,Measure,,,,,,,,,,,
+217,Line,,53,,,104,208,None,Measure,,,,,,,,,,,
+218,Line,,53,,,104,209,None,Measure,,,,,,,,,,,
+219,Line,,53,,,104,210,None,Measure,,,,,,,,,,,
+220,Line,,53,,,104,211,None,Measure,,,,,,,,,,,
+221,Line,,53,,,104,212,None,Measure,,,,,,,,,,,
+222,Line,,53,,,112,108,None,Arrow,,,,,,,,,,,
+223,Line,,53,,,112,108,None,Arrow,,,,,,,,,,,
+224,Line,,53,,,110,108,None,Arrow,,,,,,,,,,,
+225,Line,,53,,,110,108,None,Arrow,,,,,,,,,,,
+226,Line,,53,,,110,108,None,Arrow,,,,,,,,,,,
+227,Line,,53,,,116,108,None,Arrow,,,,,,,,,,,
+228,Line,,53,,,81,73,None,Arrow,,,,,,,,,,,
+229,Line,,53,,,129,130,Measure,Measure,,,,,,,,,,,
+230,Line,,53,,,229,61,None,Arrow,,,,,,,,,,,
+231,Line,,53,,,90,84,None,Arrow,,,,,,,,,,,
+232,Line,,53,,,90,84,None,Arrow,,,,,,,,,,,
+233,Line,,53,,,86,84,None,Arrow,,FIRST_NAME + LAST_NAME,,,,,,,,,
+234,Line,,53,,,86,233,None,None,,,,,,,,,,,
+235,Line,,53,,,86,84,None,Arrow,,,,,,,,,,,
+236,Line,,53,,,90,84,None,Arrow,,,,,,,,,,,
+237,Line,,53,,,85,84,None,Arrow,,,,,,,,,,,
+238,Line,,53,,,122,119,None,Arrow,,,,,,,,,,,
+239,Line,,53,,,122,119,None,Arrow,,,,,,,,,,,
+240,Line,,53,,,122,119,None,Arrow,,,,,,,,,,,
+241,Line,,53,,,122,119,None,Arrow,,,,,,,,,,,
+242,Line,,53,,,121,120,None,Arrow,,,,,,,,,,,
+243,Line,,53,,,121,120,None,Arrow,,,,,,,,,,,
+244,Line,,53,,,121,120,None,Arrow,,,,,,,,,,,
+245,Line,,53,,,121,120,None,Arrow,,,,,,,,,,,

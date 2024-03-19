@@ -327,7 +327,7 @@ def processing() :
     #     display(table.dtypes)
         
 
-
+    progress_total_count = 0
 
 
     logger.info("Creating Dimension Tables.")
@@ -335,7 +335,8 @@ def processing() :
     produc_types_content = pd.merge(product_type,product_line, left_on="PRODUCT_LINE_CODE", how="inner", right_on="PRODUCT_LINE_CODE")
 
     PRODUCT_REGISTRY = product.merge(produc_types_content, left_on="PRODUCT_TYPE_CODE", how="inner", right_on="PRODUCT_TYPE_CODE")
-
+    PRODUCT_REGISTRY = PRODUCT_REGISTRY.replace("'","''", regex=True)
+    progress_total_count += len(PRODUCT_REGISTRY)
 
 
 
@@ -344,18 +345,20 @@ def processing() :
     sales_staff_combined = sales_staff_combined.sort_values(by=["SALES_STAFF_CODE"])
     # inplace=False om een een nieuwe dataframe te returnen, anders gaat het sales_staff aanpassen en krijg je niks terug
     sales_staff_combined = sales_staff_combined.dropna(subset=["MANAGER_CODE"], inplace=False)
-
+    progress_total_count += len(sales_staff_combined)
 
     sales_branch_combined = pd.concat([sales_branch, go_staff_sales_branch], ignore_index=True)
     sales_branch_combined = sales_branch_combined.drop_duplicates()
     sales_branch_combined["POSTAL_ADDRESS"] = sales_branch_combined[["ADDRESS1", "POSTAL_ZONE"]].agg( ", ".join, axis=1)
-
+    sales_branch_combined = sales_branch_combined.replace("'","''", regex=True)
+    progress_total_count += len(sales_branch_combined)
 
 
 
     # combineer de verschillende retailer_site tabellen en drop duplicates
     retailer_site_combined = pd.concat([retailer_site, go_crm_retailer_site], ignore_index=True)
     retailer_site_combined = retailer_site_combined.drop_duplicates()
+    progress_total_count += len(retailer_site_combined)    
 
     # merge pad 1 : Retailer_Site --> Country --> Sales_Territory
     country_content = pd.merge(go_crm_country, go_crm_sales_territory, left_on="SALES_TERRITORY_CODE", how="inner", right_on="SALES_TERRITORY_CODE")
@@ -371,10 +374,11 @@ def processing() :
     # Als iets een NaN value heeft, vervang met 0
     retailer["EXTENSION"] = retailer["EXTENSION"].fillna(0)
     retailer["RETAILER_CODEMR"] = retailer["RETAILER_CODEMR"].fillna(0)
-
+    retailer = retailer.replace("'","''", regex=True)
+    progress_total_count += len(retailer)
 
     satisfaction = pd.merge(go_staff_satisfaction, go_staff_satisfaction_type, left_on="SATISFACTION_TYPE_CODE", how="inner", right_on="SATISFACTION_TYPE_CODE")
-
+    progress_total_count += len(satisfaction)
 
 
 
@@ -388,13 +392,13 @@ def processing() :
     order_details_content["PROFIT"] = ((order_details_content["UNIT_SALE_PRICE"] * order_details_content["QUANTITY"]) - (order_details_content["UNIT_COST"] * order_details_content["QUANTITY"]))
     order_details_content["DISCOUNT_PERCENTAGE"] = ((order_details_content["UNIT_SALE_PRICE"]/order_details_content["UNIT_PRICE"]) * 100)
     order_details_content["DISCOUNT_PERCENTAGE"] = order_details_content["DISCOUNT_PERCENTAGE"].round(2)
-
+    progress_total_count += len(order_details_content)
 
     returned_item_combined = pd.merge(returned_item, return_reason, left_on="RETURN_REASON_CODE", how="inner", right_on="RETURN_REASON_CODE")
     returned_item_combined = pd.merge(returned_item_combined, order_details, left_on="ORDER_DETAIL_CODE", how="inner", right_on="ORDER_DETAIL_CODE")
     returned_item_combined = pd.merge(returned_item_combined, product, left_on="PRODUCT_NUMBER", how="inner", right_on="PRODUCT_NUMBER")
     returned_item_combined = returned_item_combined.loc[:,["RETURN_CODE","ORDER_DETAIL_CODE","RETURN_DATE","PRODUCT_NUMBER","RETURN_QUANTITY","RETURN_REASON_CODE","RETURN_DESCRIPTION_EN"]]
-
+    progress_total_count += len(returned_item_combined)
 
 
 
@@ -403,19 +407,19 @@ def processing() :
     staff_training_combined["FULL_NAME"] = staff_training_combined[["FIRST_NAME", "LAST_NAME"]].agg( ", ".join, axis=1)
     staff_training_combined = pd.merge(staff_training_combined, go_staff_satisfaction, left_on=["YEAR","SALES_STAFF_CODE"], how="inner", right_on=["YEAR","SALES_STAFF_CODE"])
     staff_training_combined = staff_training_combined.loc[:,["YEAR","SALES_STAFF_CODE", "FULL_NAME","POSITION_EN","COURSE_CODE","SATISFACTION_TYPE_CODE"]]
-
+    progress_total_count += len(staff_training_combined)
 
 
     global GO_SALES_PRODUCT_FORECASTData
     GO_SALES_PRODUCT_FORECASTData = pd.read_csv("../data/raw/GO_SALES_PRODUCT_FORECASTData.csv")
     GO_SALES_PRODUCT_FORECASTData = GO_SALES_PRODUCT_FORECASTData.convert_dtypes()
-
+    progress_total_count += len(GO_SALES_PRODUCT_FORECASTData)
 
 
     global GO_SALES_INVENTORY_LEVELSData
     GO_SALES_INVENTORY_LEVELSData = pd.read_csv("../data/raw/GO_SALES_INVENTORY_LEVELSData.csv", header=0, index_col=False)
     GO_SALES_INVENTORY_LEVELSData = GO_SALES_INVENTORY_LEVELSData.convert_dtypes()
-
+    progress_total_count += len(GO_SALES_INVENTORY_LEVELSData)
         
 
 
@@ -424,7 +428,7 @@ def processing() :
 
     logger.info("Attempting database insertion.")
     
-    progress = tqdm.tqdm(total=11)
+    progress = tqdm.tqdm(total=progress_total_count)
 
     #PRODUCT
     for index, row in PRODUCT_REGISTRY.iterrows():
@@ -442,11 +446,27 @@ def processing() :
                 f" '{row["LANGUAGE"]}' )"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
+    
+    #STAFF_TRAINING
+    for index, row in staff_training_combined.iterrows():
+        try:
+            query = (
+                f"INSERT INTO STAFF_TRAINING"
+                f"(YEAR_PK, SALES_STAFF_CODE_PK,FULL_NAME,POSITION_EN,COURSE_CODE_FK,SATISFACTION_FK)"
+                f"VALUES"
+                f"({row["YEAR"]}, {row["SALES_STAFF_CODE"]},'{row["FULL_NAME"]}','{row["POSITION_EN"]}',"
+                f"{row["COURSE_CODE"]}, {row["SATISFACTION_TYPE_CODE"]})"
+                    )
+            export_cursor.execute(query)
+            progress.update(1)
+        except pyodbc.Error:
+            print(query)
+    export_cursor.commit()
+    
 
     for index, row in sales_branch_combined.iterrows():
         try:
@@ -458,11 +478,10 @@ def processing() :
                 f"'{row["COUNTRY_CODE"]}','{row["REGION"]}','{row["CITY"]}','{row["POSTAL_ZONE"]}')"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            # print(query)
-            pass
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
 
     for index, row in go_staff_course.iterrows():
@@ -471,29 +490,12 @@ def processing() :
                 f"INSERT INTO COURSE(COURSE_CODE_FK, DESCRIPTION) VALUES ({row["COURSE_CODE"]},'{row["COURSE_DESCRIPTION"]}')"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
-    
 
-    #STAFF_TRAINING
-    for index, row in staff_training_combined.iterrows():
-        try:
-            query = (
-                f"INSERT INTO STAFF_TRAINING"
-                f"(YEAR_PK, SALES_STAFF_CODE_PK,FULL_NAME,POSITION_EN,COURSE_CODE_FK,SATISFACTION_TYPE_CODE_FK)"
-                f"VALUES"
-                f"({row["YEAR"]}, {row["SALES_STAFF_CODE"]},'{row["FULL_NAME"]}','{row["POSITION_EN"]}',"
-                f"{row["COURSE_CODE"]}, {row["SATISFACTION_TYPE_CODE"]})"
-                    )
-            export_cursor.execute(query)
-        except pyodbc.Error:
-            pass
-            # print(query)
-    export_cursor.commit()
-    progress.update(1)
+
 
     for index, row in satisfaction.iterrows():
         try:
@@ -504,11 +506,28 @@ def processing() :
                 f"{row["SATISFACTION_TYPE_CODE"]},'{row["SATISFACTION_TYPE_DESCRIPTION"]}')"
                 )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
+
+    #STAFF_TRAINING
+    for index, row in staff_training_combined.iterrows():
+        try:
+            query = (
+                f"INSERT INTO STAFF_TRAINING"
+                f"(YEAR_PK, SALES_STAFF_CODE_PK,FULL_NAME,POSITION_EN,COURSE_CODE_FK,SATISFACTION_FK)"
+                f"VALUES"
+                f"({row["YEAR"]}, {row["SALES_STAFF_CODE"]},'{row["FULL_NAME"]}','{row["POSITION_EN"]}',"
+                f"{row["COURSE_CODE"]}, {row["SATISFACTION_TYPE_CODE"]})"
+                    )
+            export_cursor.execute(query)
+            progress.update(1)
+        except pyodbc.Error:
+            print(query)
+    export_cursor.commit()
+
+
 
     for index, row in order_method.iterrows():
         try:
@@ -519,11 +538,10 @@ def processing() :
                 f"({row["ORDER_METHOD_CODE"]},'{row["ORDER_METHOD_EN"]}')"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
     for index, row in return_reason.iterrows():
         try:
@@ -534,11 +552,10 @@ def processing() :
                 f"({row["RETURN_REASON_CODE"]},'{row["RETURN_DESCRIPTION_EN"]}')"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
     for index, row in GO_SALES_INVENTORY_LEVELSData.iterrows():
         try:
@@ -549,11 +566,10 @@ def processing() :
                 f"({row["INVENTORY_YEAR"]},{row["INVENTORY_MONTH"]},{row["PRODUCT_NUMBER"]},{row["INVENTORY_COUNT"]})"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
     for index, row in GO_SALES_PRODUCT_FORECASTData.iterrows():
         try:
@@ -564,11 +580,10 @@ def processing() :
             f"({row["PRODUCT_NUMBER"]},{row["YEAR"]},{row["MONTH"]},{row["EXPECTED_VOLUME"]})"
                     )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
     for index, row in retailer.iterrows():
         try:
@@ -592,11 +607,10 @@ def processing() :
                 f"'{row["GENDER"]}')"
             )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
-            pass
-            # print(query)
+            print(query)
     export_cursor.commit()
-    progress.update(1)
 
 
 
@@ -604,30 +618,61 @@ def processing() :
         try:
             query = (
                 f"INSERT INTO ORDER_DETAILS"
-                f"(ORDER_NUMBER_PK,ORDER_DETAIL_CODE_PK,ORDER_DETAILS_QUANTITY,	ORDER_DETAILS_UNIT_COST,"
+                f"(ORDER_NUMBER_PK,ORDER_DETAIL_CODE_PK,ORDER_DETAILS_QUANTITY, PRODUCT_NUMBER,	ORDER_DETAILS_UNIT_COST,"
                 f"ORDER_DETAILS_UNIT_PRICE,	ORDER_DETAILS_UNIT_SALE_PRICE,	ORDER_DETAILS_DISCOUNT_PERCENTAGE,"
                 f"ORDER_DETAILS_TURNOVER,ORDER_DETAILS_PROFIT,ORDER_DATE,SALES_BRANCH_CODE_FK,"
                 f"RETAILER_SITE_CODE,RETAILER_SITE_CONTACT)"
                 f"VALUES"
-                f"({row["ORDER_NUMBER"]},{row["ORDER_DETAIL_CODE"]},{row["QUANTITY"]},{row["UNIT_COST"]},"
+                f"({row["ORDER_NUMBER"]},{row["ORDER_DETAIL_CODE"]},{row["QUANTITY"]},{row["PRODUCT_NUMBER"]},{row["UNIT_COST"]},"
                 f"{row["UNIT_PRICE"]},{row["UNIT_SALE_PRICE"]},{row["DISCOUNT_PERCENTAGE"]},"
                 f"{row["TURNOVER"]},{row["PROFIT"]},'{row["ORDER_DATE"]}',{row["SALES_BRANCH_CODE"]},"
                 f"{row["RETAILER_SITE_CODE"]},{row["RETAILER_CONTACT_CODE"]})"
                     )
             export_cursor.execute(query)
+            progress.update(1)
         except pyodbc.Error:
             print(query)
     export_cursor.commit()
-    progress.update(1)
+
+    for index, row in returned_item_combined.iterrows():
+        try:
+            query = (
+                f"INSERT INTO RETURNED_ITEM"
+                f"(RETURNED_ITEM_CODE_PK, ORDER_DETAIL_CODE, RETURN_DATE, PRODUCT_NUMBER, RETURN_QUANTITY, RETURN_REASON_FK)"
+                f"VALUES"
+                f"({row["RETURN_CODE"]},{row["ORDER_DETAIL_CODE"]},'{row["RETURN_DATE"]}',{row["PRODUCT_NUMBER"]},"
+                f"{row["RETURN_QUANTITY"]}, {row["RETURN_REASON_CODE"]})"
+            )
+            export_cursor.execute(query)
+            progress.update(1)
+        except pyodbc.Error:
+            print(query)
+    export_cursor.commit()     
+        
+
+    # for index, row in sales_staff_combined.iterrows():
+    #     try:
+    #         query = None
+    #         export_cursor.execute(query)
+    #     except pyodbc.Error:
+    #         print(query)
+    # export_cursor.commit()
+
+    # for index, row in sales_staff_combined.iterrows():
+    #     try:
+    #         query = None
+    #         export_cursor.execute(query)
+    #     except pyodbc.Error:
+    #         print(query)
+    # export_cursor.commit()
 
     progress.close()
+
+    export_cursor.close()
 
 
     logger.success("Insertion Complete.")
 
-    export_cursor.close()
-    
-    logger.info("Data ETL complete.")
 
 
 
