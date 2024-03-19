@@ -3,12 +3,17 @@
 Week 6 gaat over Analyse & Rapportage. Door middel van Power BI (Microsoft Software) moet data inzichtelijk gemaakt worden. 
 
 ## TO-DO
-1. Foreign Key naar ORDER_METHOD vanuit ORDER_DETAILS, naar RETURN_REASON vanuit RETURNED_ITEM
-2. Triggers schrijven om rekening te houden met nieuwe relaties
-3. relatie tussen order_details en product vergeten
-4. GO_SALES_INVENTORY_LEVELSData koppelen aan PRODUCT.Product_number
-5. GO_SALES_PRODUCT_FORECASTDAta koppelen aan PRODUCT.Product_number
+1. ~~Foreign Key naar ORDER_METHOD vanuit ORDER_DETAILS, naar RETURN_REASON vanuit RETURNED_ITEM~~
+2. ~~Triggers schrijven om rekening te houden met nieuwe relaties~~
+3. ~~relatie tussen order_details en product vergeten~~
+4. ~~GO_SALES_INVENTORY_LEVELSData koppelen aan PRODUCT.Product_number~~
+5. ~~GO_SALES_PRODUCT_FORECASTDAta koppelen aan PRODUCT.Product_number~~
 ![Power BI tabel-relaties](../Assets//Week%206/Schermafbeelding%202024-03-18%20154238.png)
+
+### Power BI TO-DO
+1. Pagina's aanmaken per management vraag
+2. Opzoeken hoe je een hierarchie maakt
+3. 
 
 ## Opdrachten
 
