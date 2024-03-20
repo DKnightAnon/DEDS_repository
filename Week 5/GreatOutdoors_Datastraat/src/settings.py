@@ -22,4 +22,4 @@ class Settings():
 settings = Settings()
 logger.add("logfile.log")
 
-print(settings.DB["servername"])
+# print(settings.DB["servername"])
