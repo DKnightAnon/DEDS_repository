@@ -1,4 +1,3 @@
-
 from settings import settings, logger
 import pandas as pd
 import pyodbc
@@ -8,11 +7,10 @@ import csv
 from decimal import Decimal
 import tqdm
 
-def processing() :
-
+def processing() : 
+    
     
     logger.info(f"Importing modules : pandas, pyodbc, numpy, sqlite3, csv, decimal")
-
 
 
     export_conn = pyodbc.connect('DRIVER={SQL Server};' +
@@ -24,10 +22,6 @@ def processing() :
     logger.info(f"Establishing connection with database.")
     export_cursor = export_conn.cursor()
     logger.info(f"Creating Cursor.")
-    # export_cursor.execute("CREATE DATABASE GreatOutdoorsDW")
-    # export_cursor.execute("USE GreatOutdoorsDW")
-
-    # export_cursor
 
 
     sales_con = None
@@ -37,17 +31,15 @@ def processing() :
     logger.info("Attempting to connect to source data")
 
     try : 
-       
         sales_con = sqlite3.connect("../data/raw/go_sales.sqlite")
         print("Connected to go_sales sqlite.")
         logger.success("Connected to go_sales sqlite.")
 
-     
         crm_con = sqlite3.connect("../data/raw/go_crm.sqlite")
         print("Connected to go_crm sqlite.")
         logger.success("Connected to go_crm sqlite.")
 
- 
+
         staff_con = sqlite3.connect("../data/raw/go_staff.sqlite")
         print("Connected to go_staff sqlite.")
         logger.success("Connected to go_staff sqlite.")
@@ -56,8 +48,6 @@ def processing() :
     except sqlite3.Error as error: 
         print("Failed to read data from sqlite table", error)
         logger.error("Failed to read data from sqlite table", error)
-
-
 
 
     logger.info("Creating variables for database tables.")
@@ -104,6 +94,7 @@ def processing() :
     go_crm_sales_territory = go_crm_sales_territory[go_crm_sales_territory.columns.drop(list(go_crm_sales_territory.filter(regex="TRIAL")))]
 
 
+
     global go_staff_course 
     go_staff_course = pd.read_sql_query("SELECT * FROM {}".format("course"),staff_con)
     go_staff_course = go_staff_course[go_staff_course.columns.drop(list(go_staff_course.filter(regex="TRIAL")))]
@@ -132,7 +123,6 @@ def processing() :
     global go_staff_training
     go_staff_training = pd.read_sql_query("SELECT * FROM {}".format("training"),staff_con)
     go_staff_training = go_staff_training = go_staff_training[go_staff_training.columns.drop(list(go_staff_training.filter(regex="TRIAL")))]
-
 
     global product
     product = pd.read_sql_query("SELECT * FROM {}".format("product"),sales_con)
@@ -191,7 +181,7 @@ def processing() :
 
     go_crm = [go_crm_age_group,go_crm_country,go_crm_retailer,go_crm_retailer_contact,go_crm_retailer_headquarters,
             go_crm_retailer_segment,go_crm_retailer_site,go_crm_retailer_type,go_crm_sales_demographic,go_crm_sales_territory]
-
+    
     logger.info("Converting table columns to optimal types.")
 
     go_crm_age_group["AGE_GROUP_CODE"] = go_crm_age_group["AGE_GROUP_CODE"].astype(int)
@@ -226,6 +216,7 @@ def processing() :
 
 
 
+
     go_staff = [go_staff_course, go_staff_sales_branch,go_staff_staff,go_staff_satisfaction, go_staff_satisfaction_type, go_staff_training]
 
     go_staff_course["COURSE_CODE"] = go_staff_course["COURSE_CODE"].astype(int)
@@ -255,9 +246,8 @@ def processing() :
     for table in go_staff:
         # table = table.drop("TRIAL633", axis=1)
         table = table[table.columns.drop(list(table.filter(regex="TRIAL")))]
-    #     display(table.dtypes)
 
-    # display(go_staff_course)
+
 
     go_sales = [SALES_TARGETData,country,order_details,order_header,
                 order_method,product,product_line,product_type,returned_item,
@@ -323,29 +313,31 @@ def processing() :
     retailer_site["COUNTRY_CODE"] = retailer_site["COUNTRY_CODE"].astype(int)
     retailer_site["ACTIVE_INDICATOR"] = retailer_site["ACTIVE_INDICATOR"].astype(int)
 
-    # for table in go_sales:
-    #     display(table.dtypes)
-        
 
     progress_total_count = 0
 
 
     logger.info("Creating Dimension Tables.")
+       
 
     produc_types_content = pd.merge(product_type,product_line, left_on="PRODUCT_LINE_CODE", how="inner", right_on="PRODUCT_LINE_CODE")
 
     PRODUCT_REGISTRY = product.merge(produc_types_content, left_on="PRODUCT_TYPE_CODE", how="inner", right_on="PRODUCT_TYPE_CODE")
     PRODUCT_REGISTRY = PRODUCT_REGISTRY.replace("'","''", regex=True)
+    
     progress_total_count += len(PRODUCT_REGISTRY)
 
 
 
-  
     sales_staff_combined = pd.concat([sales_staff, go_staff_staff], ignore_index=True)
+    sales_staff_combined["FULL_NAME"] = sales_staff_combined[["FIRST_NAME", "LAST_NAME"]].agg( " ".join, axis=1)
     sales_staff_combined = sales_staff_combined.sort_values(by=["SALES_STAFF_CODE"])
     # inplace=False om een een nieuwe dataframe te returnen, anders gaat het sales_staff aanpassen en krijg je niks terug
     sales_staff_combined = sales_staff_combined.dropna(subset=["MANAGER_CODE"], inplace=False)
     progress_total_count += len(sales_staff_combined)
+
+
+
 
     sales_branch_combined = pd.concat([sales_branch, go_staff_sales_branch], ignore_index=True)
     sales_branch_combined = sales_branch_combined.drop_duplicates()
@@ -353,12 +345,14 @@ def processing() :
     sales_branch_combined = sales_branch_combined.replace("'","''", regex=True)
     progress_total_count += len(sales_branch_combined)
 
+    # #### Retailer
+    # Samengevoegde tabel, bestaat uit go_crm.Retailer_Contact, Retailer_Site, Retailer, Retailer_Type, Country, Sales_Territory
 
 
     # combineer de verschillende retailer_site tabellen en drop duplicates
     retailer_site_combined = pd.concat([retailer_site, go_crm_retailer_site], ignore_index=True)
     retailer_site_combined = retailer_site_combined.drop_duplicates()
-    progress_total_count += len(retailer_site_combined)    
+    progress_total_count += len(retailer_site_combined)   
 
     # merge pad 1 : Retailer_Site --> Country --> Sales_Territory
     country_content = pd.merge(go_crm_country, go_crm_sales_territory, left_on="SALES_TERRITORY_CODE", how="inner", right_on="SALES_TERRITORY_CODE")
@@ -377,6 +371,7 @@ def processing() :
     retailer = retailer.replace("'","''", regex=True)
     progress_total_count += len(retailer)
 
+
     satisfaction = pd.merge(go_staff_satisfaction, go_staff_satisfaction_type, left_on="SATISFACTION_TYPE_CODE", how="inner", right_on="SATISFACTION_TYPE_CODE")
     progress_total_count += len(satisfaction)
 
@@ -384,7 +379,6 @@ def processing() :
 
     logger.info("Creating Fact Tables.")
 
- 
     Order_Details_Feit = None
     order_details_content = pd.merge(order_header, order_details, left_on="ORDER_NUMBER", how="inner", right_on="ORDER_NUMBER" )
     order_details_content = pd.merge(order_details_content, order_method, left_on="ORDER_METHOD_CODE", how="inner", right_on="ORDER_METHOD_CODE")
@@ -394,11 +388,15 @@ def processing() :
     order_details_content["DISCOUNT_PERCENTAGE"] = order_details_content["DISCOUNT_PERCENTAGE"].round(2)
     progress_total_count += len(order_details_content)
 
+
+
+
     returned_item_combined = pd.merge(returned_item, return_reason, left_on="RETURN_REASON_CODE", how="inner", right_on="RETURN_REASON_CODE")
     returned_item_combined = pd.merge(returned_item_combined, order_details, left_on="ORDER_DETAIL_CODE", how="inner", right_on="ORDER_DETAIL_CODE")
     returned_item_combined = pd.merge(returned_item_combined, product, left_on="PRODUCT_NUMBER", how="inner", right_on="PRODUCT_NUMBER")
     returned_item_combined = returned_item_combined.loc[:,["RETURN_CODE","ORDER_DETAIL_CODE","RETURN_DATE","PRODUCT_NUMBER","RETURN_QUANTITY","RETURN_REASON_CODE","RETURN_DESCRIPTION_EN"]]
     progress_total_count += len(returned_item_combined)
+
 
 
 
@@ -420,15 +418,14 @@ def processing() :
     GO_SALES_INVENTORY_LEVELSData = pd.read_csv("../data/raw/GO_SALES_INVENTORY_LEVELSData.csv", header=0, index_col=False)
     GO_SALES_INVENTORY_LEVELSData = GO_SALES_INVENTORY_LEVELSData.convert_dtypes()
     progress_total_count += len(GO_SALES_INVENTORY_LEVELSData)
-        
-
-
-
 
 
     logger.info("Attempting database insertion.")
     
     progress = tqdm.tqdm(total=progress_total_count)
+
+
+
 
     #PRODUCT
     for index, row in PRODUCT_REGISTRY.iterrows():
@@ -450,23 +447,24 @@ def processing() :
         except pyodbc.Error:
             print(query)
     export_cursor.commit()
-    
-    #STAFF_TRAINING
-    for index, row in staff_training_combined.iterrows():
+
+    for index, row in sales_staff_combined.iterrows():
         try:
             query = (
-                f"INSERT INTO STAFF_TRAINING"
-                f"(YEAR_PK, SALES_STAFF_CODE_PK,FULL_NAME,POSITION_EN,COURSE_CODE_FK,SATISFACTION_FK)"
+                f"INSERT INTO SALES_STAFF"
+                f"(SALES_STAFF_CODE_PK, FIRST_NAME, LAST_NAME, FULL_NAME, POSITION_EN, WORK_PHONE, EXTENSION,"
+                f"FAX, EMAIL, DATE_HIRED, SALES_BRANCH_CODE, MANAGER_CODE)"
                 f"VALUES"
-                f"({row["YEAR"]}, {row["SALES_STAFF_CODE"]},'{row["FULL_NAME"]}','{row["POSITION_EN"]}',"
-                f"{row["COURSE_CODE"]}, {row["SATISFACTION_TYPE_CODE"]})"
-                    )
+                f"({row["SALES_STAFF_CODE"]}, '{row["FIRST_NAME"]}', '{row["LAST_NAME"]}', '{row["FULL_NAME"]}',"
+                f"'{row["POSITION_EN"]}', '{row["WORK_PHONE"]}', {row["EXTENSION"]}, '{row["FAX"]}', '{row["EMAIL"]}',"
+                f"'{row["DATE_HIRED"]}', {row["SALES_BRANCH_CODE"]}, {row["MANAGER_CODE"]})"
+            )
             export_cursor.execute(query)
             progress.update(1)
         except pyodbc.Error:
             print(query)
     export_cursor.commit()
-    
+        
 
     for index, row in sales_branch_combined.iterrows():
         try:
@@ -621,12 +619,12 @@ def processing() :
                 f"(ORDER_NUMBER_PK,ORDER_DETAIL_CODE_PK,ORDER_DETAILS_QUANTITY, PRODUCT_NUMBER,	ORDER_DETAILS_UNIT_COST,"
                 f"ORDER_DETAILS_UNIT_PRICE,	ORDER_DETAILS_UNIT_SALE_PRICE,	ORDER_DETAILS_DISCOUNT_PERCENTAGE,"
                 f"ORDER_DETAILS_TURNOVER,ORDER_DETAILS_PROFIT,ORDER_DATE,SALES_BRANCH_CODE_FK,"
-                f"RETAILER_SITE_CODE,RETAILER_SITE_CONTACT)"
+                f"RETAILER_SITE_CODE,RETAILER_SITE_CONTACT, ORDER_METHOD_CODE_PK)"
                 f"VALUES"
                 f"({row["ORDER_NUMBER"]},{row["ORDER_DETAIL_CODE"]},{row["QUANTITY"]},{row["PRODUCT_NUMBER"]},{row["UNIT_COST"]},"
                 f"{row["UNIT_PRICE"]},{row["UNIT_SALE_PRICE"]},{row["DISCOUNT_PERCENTAGE"]},"
                 f"{row["TURNOVER"]},{row["PROFIT"]},'{row["ORDER_DATE"]}',{row["SALES_BRANCH_CODE"]},"
-                f"{row["RETAILER_SITE_CODE"]},{row["RETAILER_CONTACT_CODE"]})"
+                f"{row["RETAILER_SITE_CODE"]},{row["RETAILER_CONTACT_CODE"]}, {row["ORDER_METHOD_CODE"]})"
                     )
             export_cursor.execute(query)
             progress.update(1)
@@ -647,7 +645,7 @@ def processing() :
             progress.update(1)
         except pyodbc.Error:
             print(query)
-    export_cursor.commit()     
+    export_cursor.commit()    
         
 
     # for index, row in sales_staff_combined.iterrows():
@@ -666,13 +664,9 @@ def processing() :
     #         print(query)
     # export_cursor.commit()
 
+
     progress.close()
-
     export_cursor.close()
-
-
     logger.success("Insertion Complete.")
-
-
 
 
