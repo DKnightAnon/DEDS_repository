@@ -12,6 +12,8 @@ numpy = "^1.26.4"
 pyodbc = "^5.1.0"
 loguru = "^0.7.2"
 tqdm = "^4.66.2"
+matplotlib = "^3.8.3"
+scikit-learn = "^1.4.1.post1"
 
 
 [tool.poetry.group.dev.dependencies]
