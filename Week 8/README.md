@@ -43,16 +43,21 @@ met als afhankelijke variabele :
 
 Door onafhankelijke variabelen UNIT_COST, UNIT_SALE_PRICE, en RETAILER_ID(Retailer_Name gemapped naar integers) toe te voegen is een MSE van 3554.6285912992025 en een MAE van 33.391287240728445 behaald.
 
-Versie 3, met outliers (Orderaantal boven 800) weggelaten. MSE van 2764.827458808092 en MAE van 31.848096998273398 .
+Versie 3, met outliers (Orderaantal boven 800) weggelaten. MSE van 2764.827458808092 en MAE van 31.848096998273398 . Variance score (RMSE) van 52.58162662763574 .
 ![versie 2 van regressiemodel](../Assets/Week%208/Regressiemodel%20grafiek%20V2.png)
+![historogram van residuele data](../Assets/Week%208/Residuals_Historogram.png)
 
 ## Scatter plots
 Atlassian. (n.d.). Mastering Scatter Plots: Visualize data correlations. https://www.atlassian.com/data/charts/what-is-a-scatter-plot 
 
 How to plot regression line of sklearn model in matplotlib? -. (2023, August 25). ProjectPro. https://www.projectpro.io/recipes/plot-regression-line-of-sklearn-model-matplotlib 
 
+## Linear regression
+Surmayi. (2024, February 26). Linear regression using Pandas & Numpy — for beginners in data science. Medium. https://medium.com/analytics-vidhya/linear-regression-using-pandas-numpy-for-beginners-in-data-science-fe57157ed93d
+
 
 TODO : 
 - Herschrijf notebook om gebruik te maken van de Greatoutdoors Datawarehouse
+- Linear Regression plotline toevoegen
 
 # PR8-2 Classificatiemodellen in Machine Learning
