@@ -61,3 +61,52 @@ TODO :
 - Linear Regression plotline toevoegen
 
 # PR8-2 Classificatiemodellen in Machine Learning
+
+De opdracht is om een classificatiemodel te maken dat voorspeld wat de retourreden gaat zijn voor toekomstige order, gebaseerd op reeds bekende data. 
+
+Met dat in gedachte, is de afhankelijke variabele GO_SALES.Returned_Item.Return_Reason_Code.
+Verwachte onafhankelijke variabelen zijn : 
+- Order_header.order_date
+- returned_item.return_date
+- order_method.order_method_code
+
+Momenteel ziet de confusion matrix er als volgt uit : 
+**AFBEELDING HIER**
+
+Dit ziet er heel anders uit dan dat uit de demo van het hoorcollege : 
+**AFBEELDING HIER**
+
+In eerste instantie dacht ik dat ik iets fout had gedaan. Maar dit verschil in de matrices komt volgens mij omdat de voorspelde resultaten van de opdracht niet binair zijn, in tegenstelling tot het voorbeeld. In het voorbeeld kan de voorspelde waarde 0 of 1 zijn, en niks anders. Daarmee kom je inderdaad op een nette matrix van 2x2 terecht. 
+De resultaten vanuit de opdracht kunnen elk gegeven positief getal zijn, wat voor meer blokken in de matrix zorgt. 
+
+Dit misverstand zorgde er ook voor dat ik deze foutmelding kreeg : 
+**AFBEELDING** Ik probeerde maar 2 labels mee te geven, terwijl er veel meer blokken zijn dan dat.
+
+Er moet gekeken worden naar hoe de confusion matrix kleiner gemaakt kan worden. Dat wil zeggen, afhankelijk van of de voorspelling klopt moet het in een True Positive, True Negative, False Positive of False Negative terecht komen. Op deze wijze moet de matrix binair gemaakt worden. 
+
+**ER MOET GEZOCHT WORDEN OP RETURN_REASON, NIET RETURN_QUANTITY**
+
+4-4-2024-14:46 - accuraatheidscore is momenteel 99+%. Komt dit vanwege de join tussen order_details en returned_item? Niet elke order wordt (in zijn geheel) geretouneerd. Als de return_reason NaN is, waar wordt het dan naar veranderd? *besloten om NaN naar 6 te veranderen voor One-Hot encoding*
+
+Momenteel krijg ik een 6x6 Confusion Matrix : 
+![6x6 confusion matrix betreffende retourredenen](../Assets/Week%208/Confusion%20Matrix%20V3,%20Depth=2.png)
+
+Andere studenten is het gelukt om er een 2x2 matrix van te maken. *Met Damion Gans gesproken, 6x6 is het juiste formaat. Hoge accuraatheid is ook niet perse een fout.*
+
+Dit heeft echter een verdacht hoog accuraatheidspercentage : namelijk 0.9907120743034056, ofwel 99%. Hier moet wel sprake zijn van een geval van *overfitting*. 
+
+4-4-2024-15:40 - Na wat rondgespeeld te hebben met de onafhankelijke variabelen is het percentage nooit lager dan 98% gevallen. Het enige wat ik me kan bedenken is dat ik mijn joins op de tabellen niet goed doe. Niet elke Order_Detail heeft een bijbehorend Returned_Item in de database. In andere woorden, omdat er zoveel niet geretouneerd worden beinvloedt dat de conclusies dat het machine learnin model trekt.
+
+Andere studenten zitten tussen de 40-60%. Misschien gebruiken zij de Order_Details tabel niet. Of misschien hebben zij enkel een left join gedaan zodat er alleen daadwerkelijk geretouneerde producten behandeld worden.
+
+
+***
+Training, P. (2023, May 12). Confusion Matrix with Scikit-Learn and Python - Pierian Training. Pierian Training. https://pieriantraining.com/confusion-matrix-with-scikit-learn-and-python/
+
+Binary Classification Using a scikit Decision Tree -- Visual Studio Magazine. (2023, February 21). Visual Studio Magazine. https://visualstudiomagazine.com/articles/2023/02/21/scikit-decision-tree.aspx
+
+Multilabel-indicator is not supported for confusion matrix. (n.d.). Stack Overflow. https://stackoverflow.com/questions/46953967/multilabel-indicator-is-not-supported-for-confusion-matrix
+
+Kundu, R. (2023, May 11). Confusion Matrix: How To Use It & Interpret Results [Examples]. V7. https://www.v7labs.com/blog/confusion-matrix-guide
+
+Is there a way to implement a 2x2 confusion matrix for multilabel classifier? (n.d.). Stack Overflow. https://stackoverflow.com/questions/70705556/is-there-a-way-to-implement-a-2x2-confusion-matrix-for-multilabel-classifier
