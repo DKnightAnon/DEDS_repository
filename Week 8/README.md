@@ -71,7 +71,7 @@ Verwachte onafhankelijke variabelen zijn :
 - order_method.order_method_code
 
 Momenteel ziet de confusion matrix er als volgt uit : 
-**AFBEELDING HIER**
+![Confusion Matrix versie 1](../Assets/Week%208/Confusion%20Matrix%20V1,%20Depth=MAX.png)
 
 Dit ziet er heel anders uit dan dat uit de demo van het hoorcollege : 
 **AFBEELDING HIER**
