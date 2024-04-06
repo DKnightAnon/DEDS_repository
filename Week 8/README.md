@@ -99,6 +99,9 @@ Dit heeft echter een verdacht hoog accuraatheidspercentage : namelijk 0.99071207
 
 Andere studenten zitten tussen de 40-60%. Misschien gebruiken zij de Order_Details tabel niet. Of misschien hebben zij enkel een left join gedaan zodat er alleen daadwerkelijk geretouneerde producten behandeld worden.
 
+6-4-2024-7:31 - Onderstaande afbeelding is dezelfde 6x6 matrix gegenereerd via dezelfde code op depth=2, maar nu zijn de orders dat nooit teruggebracht zijn buiten beschouwing gelaten. 
+![6x6 confusion matrix betreffende retourredenen, zonder nooit teruggebrachte orders](../Assets/Week%208/Confusion%20Matrix%20V4,%20Depth=2.png)
+
 
 ***
 Training, P. (2023, May 12). Confusion Matrix with Scikit-Learn and Python - Pierian Training. Pierian Training. https://pieriantraining.com/confusion-matrix-with-scikit-learn-and-python/
