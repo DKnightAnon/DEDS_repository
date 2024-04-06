@@ -43,9 +43,18 @@ met als afhankelijke variabele :
 
 Door onafhankelijke variabelen UNIT_COST, UNIT_SALE_PRICE, en RETAILER_ID(Retailer_Name gemapped naar integers) toe te voegen is een MSE van 3554.6285912992025 en een MAE van 33.391287240728445 behaald.
 
-Versie 3, met outliers (Orderaantal boven 800) weggelaten. MSE van 2764.827458808092 en MAE van 31.848096998273398 . Variance score (RMSE) van 52.58162662763574 .
+Versie 2, met outliers (Orderaantal boven 800) weggelaten. MSE van 2764.827458808092 en MAE van 31.848096998273398 . Variance score / Root Mean Squared Error (RMSE) van 52.58162662763574 .
 ![versie 2 van regressiemodel](../Assets/Week%208/Regressiemodel%20grafiek%20V2.png)
 ![historogram van residuele data](../Assets/Week%208/Residuals_Historogram.png)
+
+06-04-2024-20:35 - Versie 3 van model gemaakt. 
+- MSE : 2804.0034939106513
+- MAE : 31.969058132392767
+- RMSE : 52.95284217028064
+![versie 3 regressiemodel](../Assets/Week%208/Regressiemodel%20grafiek%20V3.png)
+
+
+
 
 ## Scatter plots
 Atlassian. (n.d.). Mastering Scatter Plots: Visualize data correlations. https://www.atlassian.com/data/charts/what-is-a-scatter-plot 
