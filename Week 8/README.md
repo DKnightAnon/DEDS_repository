@@ -64,6 +64,7 @@ How to plot regression line of sklearn model in matplotlib? -. (2023, August 25)
 ## Linear regression
 Surmayi. (2024, February 26). Linear regression using Pandas & Numpy — for beginners in data science. Medium. https://medium.com/analytics-vidhya/linear-regression-using-pandas-numpy-for-beginners-in-data-science-fe57157ed93d
 
+A beginner’s guide to Linear Regression in Python with Scikit-Learn. (2020, September 20). The AI Dream. https://www.theaidream.com/post/a-beginner-s-guide-to-linear-regression-in-python-with-scikit-learn
 
 TODO : 
 - Herschrijf notebook om gebruik te maken van de Greatoutdoors Datawarehouse
