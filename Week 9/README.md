@@ -119,6 +119,13 @@ Poojari, D. (2023, July 13). Apriori algorithm in Python (Recommendation engine)
 
 Madhushika, D. (2022, January 6). Apriori Algorithm in Data Mining: Part 02 - LinkIT - Medium. Medium. https://medium.com/linkit-intecs/apriori-algorithm-in-data-mining-part-2-590d58e0998b
 
+Khan, A. (2024, April 10). Data Science - Apriori algorithm in Python- Market basket analysis. Intellipaat. https://intellipaat.com/blog/data-science-apriori-algorithm/
+
+Bismakhan. (2021, October 14). Apriori Algorithm from Scratch. https://www.kaggle.com/code/bismakhan08/apriori-algorithm-from-scratch
+
+Webmaster. (2024, March 6). The apriori algorithm in Python: Discover associations in data – meccanismo complesso. https://www.meccanismocomplesso.org/en/the-apriori-algorithm-in-python-discover-associations-in-data/
+
+
    ### Implementatie
 
    - dummy encode PRODUCT_NAME (dataframe maken met net zoveel kolommen als er producten zijn)

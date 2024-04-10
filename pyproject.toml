@@ -17,6 +17,7 @@ scikit-learn = "^1.4.1.post1"
 seaborn = "^0.13.2"
 apriori-python = "^1.0.4"
 apyori = "^1.1.2"
+mlxtend = "^0.23.1"
 
 
 [tool.poetry.group.dev.dependencies]
