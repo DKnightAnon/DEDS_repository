@@ -125,6 +125,8 @@ Bismakhan. (2021, October 14). Apriori Algorithm from Scratch. https://www.kaggl
 
 Webmaster. (2024, March 6). The apriori algorithm in Python: Discover associations in data – meccanismo complesso. https://www.meccanismocomplesso.org/en/the-apriori-algorithm-in-python-discover-associations-in-data/
 
+Raschka, S. (n.d.). Apriori - mlxtend. https://rasbt.github.io/mlxtend/user_guide/frequent_patterns/apriori/
+
 
    ### Implementatie
 
@@ -132,3 +134,6 @@ Webmaster. (2024, March 6). The apriori algorithm in Python: Discover associatio
    - maak een loop dat voor elk ORDER_NUMBER een list maakt van bestelde producten
      - Drop alles met maar 1 product?
    - vul dummy encode dataframe ( vul 1 in in kolommen waarvan order_detail een product van bevat)
+
+   ### TODO
+   - definitie geven voor verschillende termen(Support, Confidence, Lift, misschien ook Conviction)
