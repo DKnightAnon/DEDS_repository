@@ -102,6 +102,33 @@ Met bovenstaande Itemset Database :
       Answer = Lk (union)
    ```
 
+## Termen
+- Support
+
+  - Support is de proportie van hoe vaak Item X voorkomt in een gegeven aantal Transacties. 
+
+    Support(Item x) =  Number of transactions in which Item X appears / Total number of transactions
+
+    ![Support formula](../Assets/Week%209/Frequent%20Itemsets/Support_Formula.png)
+
+- Confidence
+
+  - Confidence is de waarschijnlijkheid in percentage dat Item Y ook gekocht wordt als Item X wordt gekocht. 
+
+    Conf( Item X{Wine, Chips} => Item Y{Bread}) = Support Item XY / Support Item X
+
+    ![Confidence formula](../Assets/Week%209/Frequent%20Itemsets/Confidence_Formula.png)
+
+- Lift
+
+  - Lift vertegenwoordigd de verhoging in de kans tussen de aanwezigheid van product Y met de kennis dat product X er ook is vergeleken met de aanwezigheid van product Y zonder kennis van een eventuele aanwezig van product X.   
+
+    ![Formula for calculating Lift](../Assets/Week%209/Frequent%20Itemsets/Lift_Formula.png)
+
+    Dat wil zeggen dat in gevallen dat de aanwezigheid van X ertoe leidt dat Y er is, de waarde van Lift groter is dan 1.
+
+
+
 ## Opdracht
 
 PR9-2: Great Outdoors wil graag weten welke producten vaak samen gekocht worden door klanten, door het bouwen van Frequent Itemsets met A-Priori-algoritme. Tip: merge eerst de tabellen 'product' en 'order_details' om een juiste tabel met brongegevens te krijgen waarop je het algoritme kan toepassen. 
@@ -126,6 +153,8 @@ Bismakhan. (2021, October 14). Apriori Algorithm from Scratch. https://www.kaggl
 Webmaster. (2024, March 6). The apriori algorithm in Python: Discover associations in data – meccanismo complesso. https://www.meccanismocomplesso.org/en/the-apriori-algorithm-in-python-discover-associations-in-data/
 
 Raschka, S. (n.d.). Apriori - mlxtend. https://rasbt.github.io/mlxtend/user_guide/frequent_patterns/apriori/
+
+Garg, A. (2019, February 7). Complete guide to Association Rules (1/2) - Towards Data Science. Medium. https://towardsdatascience.com/association-rules-2-aa9a77241654
 
 
    ### Implementatie
