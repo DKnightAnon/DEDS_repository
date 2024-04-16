@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Network;
+using Simple_Neural_Network;
 using System.Data.SQLite;
 
 public class Program
@@ -44,18 +45,24 @@ public class Program
             }    
             Console.WriteLine();
             arrayIndex++;
-            Console.WriteLine(arrayIndex);
+            //Console.WriteLine(arrayIndex);
         }
+        Console.WriteLine();
+
+        double[] normalizedOutputs = Normalizer.outputNormalize(trainingOutputs);
+
+        double[][] normalizedInputs = Normalizer.normalizeInputs(trainingInputs);
+
         Console.WriteLine("Connection succeeded");
 
         reader.Close();
 
-        Console.WriteLine($"TrainingInputs length : {trainingInputs.Length}");
+        //Console.WriteLine($"TrainingInputs length : {trainingInputs.Length}");
 
-        for (int i = 0; i < trainingInputs.Length; i++)
-        {
-            Console.WriteLine($"trainingInputs element {i} length: {trainingInputs[i].Length}");
-        }
+        //for (int i = 0; i < trainingInputs.Length; i++)
+        //{
+        //    Console.WriteLine($"trainingInputs element {i} length: {trainingInputs[i].Length}");
+        //}
 
 
 
@@ -65,22 +72,22 @@ public class Program
 
 
 
-        
+
 
         // Train the neural network
         for (int epoch = 0; epoch < 1000; epoch++) // Training for 1000 epochs
         {
-            for (int i = 0; i < trainingInputs.Length; i++)
+            for (int i = 0; i < normalizedInputs.Length; i++)
             {
-                neuralNetwork.Train(trainingInputs[i], trainingOutputs[i]);
+                neuralNetwork.Train(normalizedInputs[i], normalizedOutputs[i]);
             }
         }
 
         // Test the trained network
-        for (int i = 0; i < trainingInputs.Length; i++)
+        for (int i = 0; i < normalizedInputs.Length; i++)
         {
-            double actualOutput = neuralNetwork.FeedForward(trainingInputs[i]);
-            Console.WriteLine("Input: " + string.Join(", ", trainingInputs[i]) + " | Desired Output: " + trainingOutputs[i] + " | Actual Output: " + actualOutput);
+            double actualOutput = neuralNetwork.FeedForward(normalizedInputs[i]);
+            Console.WriteLine("Input: " + string.Join(", ", normalizedInputs[i]) + " | Desired Output: " + normalizedOutputs[i] + " | Actual Output: " + actualOutput);
         }
     }
 }

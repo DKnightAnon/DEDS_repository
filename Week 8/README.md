@@ -70,6 +70,10 @@ Surmayi. (2024, February 26). Linear regression using Pandas & Numpy — for beg
 
 A beginner’s guide to Linear Regression in Python with Scikit-Learn. (2020, September 20). The AI Dream. https://www.theaidream.com/post/a-beginner-s-guide-to-linear-regression-in-python-with-scikit-learn
 
+Codecademy. (n.d.). Normalization. Codecademy. https://www.codecademy.com/article/normalization
+
+Olusanya, G. (2022, September 13). The Complete Guide to Min-Max Scaler in Machine Learning with Ease. https://blog.finxter.com/the-complete-guide-to-min-max-scaler-in-machine-learning-with-ease/
+
 TODO : 
 - Herschrijf notebook om gebruik te maken van de Greatoutdoors Datawarehouse
 - Linear Regression plotline toevoegen
