@@ -92,15 +92,34 @@ namespace Simple_Neural_Network
 
         }
 
-        public static double[][] normalizeTraining(double[][] inputs, double[]outputs, double[] minOutput, double[]maxOutput) 
+        public static double[][] normalizeTraining(double[][] inputs, double[]outputs, double[] minInputs, double[] maxOutputs) 
         {
 
 
+            double[][] normalizedInputs = normalizeInputs(inputs, minInputs, maxOutputs);
+            double[] normalizedOutputs = outputNormalize(outputs);
 
+            
+            for (int i = 0; i<normalizedInputs.Length; i++ )
+            {
 
+                double[] outputValue = new double[] { normalizedOutputs[i] };
+                normalizedInputs[i] = normalizedInputs[i].Concat(outputValue).ToArray();
+               
+            }
 
+            Console.WriteLine("Normalized inputs with normalized output:");
+            foreach (var record in normalizedInputs) 
+            { 
+                foreach (var value in record) 
+                {
+                    Console.Write($"{value}| "); 
+                }
+                Console.WriteLine();
+            }
 
-            throw new NotImplementedException();
+            return normalizedInputs;
+            //throw new NotImplementedException();
         }
 
 

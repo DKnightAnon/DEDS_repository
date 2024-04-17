@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Simple_Neural_Network
-build_property.ProjectDir = C:\Users\arcde\Documents\Haagse Hogeschool\Jaar 2\Semester 4\DEDS\DEDS_portfolio\Week 10\Simple_Neural_Network\Simple_Neural_Network\
+build_property.ProjectDir = d:\Documents\Haagse_Hogeschool\Jaar 2\Semester 4\DEDS\DEDS_repository\Week 10\Simple_Neural_Network\Simple_Neural_Network\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

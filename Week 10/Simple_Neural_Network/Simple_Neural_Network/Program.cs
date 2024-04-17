@@ -25,7 +25,7 @@ public class Program
             case "KNIGHTANON-LAPT":
                 path = "C:\\Users\\arcde\\Documents\\Haagse Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_portfolio\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\go_sales.sqlite";
                 break;
-            case "KNIGHTANON_DESK":
+            case "KNIGHTANON-DESK":
                 path = "D:\\Documents\\Haagse_Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_repository\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\go_sales.sqlite";
                 break;
         }
@@ -125,41 +125,41 @@ public class Program
 
         // Create neural network
         NeuralNetwork neuralNetwork = new NeuralNetwork(4, 3, 1);
-        
-
-        // Train the neural network
-        for (int epoch = 0; epoch < 1000; epoch++) // Training for 1000 epochs
-        {
-            for (int i = 0; i < normalizedInputs.Length; i++)
-            {
-                neuralNetwork.Train(normalizedInputs[i], normalizedOutputs[i]);
-            }
-        }
-
-        // Test the trained network
-        for (int i = 0; i < normalizedInputs.Length; i++)
-        {
-            double actualOutput = neuralNetwork.FeedForward(normalizedInputs[i]);
-            Console.WriteLine("Input: " + string.Join(", ", normalizedInputs[i]) + " | Desired Output: " + normalizedOutputs[i] + " | Actual Output: " + actualOutput.ToString("F2"));
-        }
 
 
-
-
-
-        //HillClimb_Network climb_Network = new HillClimb_Network(4, 3, 1);
-
-        //// Perform hill climbing optimization
-        //climb_Network.HillClimbing(trainingData, iterations: 1000, stepSize: 0.1);
-
-        //// Test the trained neural network
-        //foreach (var data in trainingData)
+        //// Train the neural network
+        //for (int epoch = 0; epoch < 1000; epoch++) // Training for 1000 epochs
         //{
-        //    double[] inputs = new double[4];
-        //    Array.Copy(data, inputs, 4);
-        //    double[] outputs = climb_Network.Predict(inputs);
-        //    Console.WriteLine($"Input: [{string.Join(", ", inputs)}], Output: [{string.Join(", ", outputs)}]");
+        //    for (int i = 0; i < normalizedInputs.Length; i++)
+        //    {
+        //        neuralNetwork.Train(normalizedInputs[i], normalizedOutputs[i]);
+        //    }
         //}
+
+        //// Test the trained network
+        //for (int i = 0; i < normalizedInputs.Length; i++)
+        //{
+        //    double actualOutput = neuralNetwork.FeedForward(normalizedInputs[i]);
+        //    Console.WriteLine("Input: " + string.Join(", ", normalizedInputs[i]) + " | Desired Output: " + normalizedOutputs[i] + " | Actual Output: " + actualOutput.ToString("F2"));
+        //}
+
+
+        double[][] inputOutput = Normalizer.normalizeTraining(trainingInputs,trainingOutputs,minVal,maxVal);
+
+
+        HillClimb_Network climb_Network = new HillClimb_Network(4, 3, 1);
+
+        // Perform hill climbing optimization
+        climb_Network.HillClimbing(inputOutput, iterations: 1000, stepSize: 0.1);
+
+        // Test the trained neural network
+        foreach (var data in inputOutput)
+        {
+            double[] inputs = new double[4];
+            Array.Copy(data, inputs, 4);
+            double[] outputs = climb_Network.Predict(inputs);
+            Console.WriteLine($"Input: [{string.Join(", ", inputs)}], Output: [{string.Join(", ", outputs)}]");
+        }
 
 
     }

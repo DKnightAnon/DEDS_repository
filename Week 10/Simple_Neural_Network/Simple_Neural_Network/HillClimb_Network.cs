@@ -76,6 +76,15 @@ namespace Network
                 finalOutputs[i] = Math.Tanh(sum);
             }
 
+            //foreach(var row in weightsInputHidden)
+            //{
+            //    foreach (var col in weightsInputHidden)
+            //    {
+            //        Console.Write($"{col}|");
+            //    }
+            //    Console.WriteLine();
+            //}
+
             return finalOutputs;
         }
 
