@@ -13,10 +13,10 @@ namespace Network
     public class NeuralNetwork
     {
         private double[,] inputToHiddenWeights = {
-        {0.1, 0.2, 0.3},
-        {0.4, 0.5, 0.6},
-        {0.7, 0.8, 0.9},
-        {1.0, 1.1, 1.2}
+        {0.8, 0.7, 0.8},
+        {0.4, 0.1, 0.6},
+        {0.7, 0.8, 0.3},
+        {0.2, 1.1, 1.2}
     };
 
 
@@ -104,6 +104,7 @@ namespace Network
             {
                 for (int j = 0; j < inputToHiddenWeights.GetLength(1); j++)
                 {
+                    //this used to indirectly use backpropagation
                     double deltaHiddenWeight = error * inputs[i] * hiddenToOutputWeights[j];
                     inputToHiddenWeights[i, j] += learningRate * deltaHiddenWeight;
                 }

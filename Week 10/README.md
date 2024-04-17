@@ -93,3 +93,11 @@ Datumo. (2022, May 27). Understanding input data shapes for neural networks in T
 Neural Network Regression from Scratch Using C# -- Visual Studio Magazine. (2023, October 18). Visual Studio Magazine. https://visualstudiomagazine.com/Articles/2023/10/18/neural-network-regression.aspx
 
 Maze, C., & Maze, C. (2024, April 4). Different ways to add values to a C# array. Code Maze. https://code-maze.com/add-values-to-csharp-array/
+
+Normalizing a between 0 and 1 to a given minimum and maximum. (n.d.). Stack Overflow. https://stackoverflow.com/questions/53891694/normalizing-a-between-0-and-1-to-a-given-minimum-and-maximum
+
+GfG. (2023, April 20). Introduction to hill climbing artificial intelligence. GeeksforGeeks. https://www.geeksforgeeks.org/introduction-hill-climbing-artificial-intelligence/
+
+## Feed Forward
+
+## Hill-Climbing
