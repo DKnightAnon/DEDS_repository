@@ -2362,19 +2362,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anthony Delgado\\.nuget\\packages\\": {}
+    "C:\\Users\\arcde\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Haagse_Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_repository\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\Simple_Neural_Network.csproj",
+      "projectUniqueName": "C:\\Users\\arcde\\Documents\\Haagse Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_portfolio\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\Simple_Neural_Network.csproj",
       "projectName": "Simple_Neural_Network",
-      "projectPath": "D:\\Documents\\Haagse_Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_repository\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\Simple_Neural_Network.csproj",
-      "packagesPath": "C:\\Users\\Anthony Delgado\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Haagse_Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_repository\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\obj\\",
+      "projectPath": "C:\\Users\\arcde\\Documents\\Haagse Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_portfolio\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\Simple_Neural_Network.csproj",
+      "packagesPath": "C:\\Users\\arcde\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arcde\\Documents\\Haagse Hogeschool\\Jaar 2\\Semester 4\\DEDS\\DEDS_portfolio\\Week 10\\Simple_Neural_Network\\Simple_Neural_Network\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Anthony Delgado\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\arcde\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2433,7 +2433,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
